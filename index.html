@@ -2,7 +2,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>Fish race</title>
+  <title>Useless</title>
   <meta name="description" content="Useless">
   <meta name="author" content="SitePoint">
 
@@ -15,12 +15,16 @@
 </head>
 
 <body>
-    <div style="background-image: url(./assets/water/frame_1.png); background-repeat: no-repeat, repeat; height: 600px">
-
-        <div id="fish1" style="width: 200px; height: 100px; background-image: url(./assets/vis1/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 20; left: 0;"></div>
-        <div id="fish2" style="width: 200px; height: 100px; background-image: url(./assets/vis2/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 155; left: 0;"></div>
-        <div id="fish3" style="width: 200px; height: 100px; background-image: url(./assets/vis3/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 275; left: 0;"></div>
-        <div id="fish4" style="width: 200px; height: 100px; background-image: url(./assets/vis4/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 395; left: 0;"></div>
+    <div style="display: flex; justify-content: center;">
+        <div style="display: flex;">
+            <div id="water" style="background-image: url(./assets/water/frame_1.png); width: 886px; height: 500px; background-repeat: no-repeat, repeat;">
+                <div id="fish1" style="width: 200px; height: 100px; background-image: url(./assets/vis1/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 20; left: 0;"></div>
+                <div id="fish2" style="width: 200px; height: 100px; background-image: url(./assets/vis2/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 155; left: 0;"></div>
+                <div id="fish3" style="width: 200px; height: 100px; background-image: url(./assets/vis3/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 275; left: 0;"></div>
+                <div id="fish4" style="width: 200px; height: 100px; background-image: url(./assets/vis4/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 395; left: 0;"></div>
+            </div>
+            <div id="finish" style="background-image: url(./assets/finish_line/finish.png); background-repeat: no-repeat, repeat; width: 25px; height: 500px;"></div>
+        </div>
     </div>
     
     <script>
@@ -29,6 +33,7 @@
         const majorSetBackAmount = 400;
         const maxAmountOfForwardMovement = 10;
         const widthFish = 200;
+        const finishLineWidth = 25;
 
         var fish1 = document.getElementById("fish1");
         var fish2 = document.getElementById("fish2");
@@ -47,11 +52,13 @@
             return { top: _y, left: _x };
         }
 
-        var finishLine = getOffset(document.getElementById("finish")).left;
+        var finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
+        const startWater = getOffset(document.getElementById("water")).left;
+        
         var winner;
 
         const createFishMovement = (element) => {
-            var start = 0;
+            var start = startWater;
             console.log(element.style);
 
             return setInterval(() => { 
