@@ -6,27 +6,80 @@
   <meta name="description" content="Fish race">
 
   <style>
-      .bold {
-        font-weight: 800;
+      #header {
+        background-image: url(./assets/Layer\ 15.png); 
+        width: 720px; 
+        height: 65px; 
+        margin-bottom: 75px
+      } 
+      
+      #water {
+        background-image: url(./assets/water/frame_1.png); 
+        width: 886px; 
+        height: 500px;
+      }
+
+      .image {
+        background-repeat: no-repeat, repeat;
+      }
+
+      #content-container {
+        display: flex; 
+        flex-direction: column; 
+        align-items: center;
+      }
+      
+      #race-container {
+        display: flex;
+      }
+
+      .fish {
+        width: 200px; 
+        height: 100px;
+        position: absolute; 
+        left: 0;
+      }
+
+      #fish1 {
+        background-image: url(./assets/vis1/frame_1.png);
+        top: 160; 
+      }
+      
+      #fish2 {
+        background-image: url(./assets/vis2/frame_1.png);
+        top: 295; 
+      }
+      
+      #fish3 {
+        background-image: url(./assets/vis3/frame_1.png);
+        top: 415; 
+      }
+
+      #fish4 {
+        background-image: url(./assets/vis4/frame_1.png);
+        top: 535; 
+      }
+
+      #finish {
+        background-image: url(./assets/finish_line/finish.png); 
+        width: 25px; 
+        height: 500px;
       }
   </style>
 
 </head>
 
 <body>
-    <div style="display: flex; justify-content: center; flex-direction: column;">
-        <div style="display: flex; flex-direction: column; align-items: center;">
-
-            <div id="header" style="background-image: url(./assets/Layer\ 15.png); width: 720px; height: 65px; background-repeat: no-repeat, repeat; margin-bottom: 75px"></div>
-            <div style="display: flex">
-            <div id="water" style="background-image: url(./assets/water/frame_1.png); width: 886px; height: 500px; background-repeat: no-repeat, repeat;">
-                <div id="fish1" style="width: 200px; height: 100px; background-image: url(./assets/vis1/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 160; left: 0;"></div>
-                <div id="fish2" style="width: 200px; height: 100px; background-image: url(./assets/vis2/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 295;  left: 0;"></div>
-                <div id="fish3" style="width: 200px; height: 100px; background-image: url(./assets/vis3/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 415; left: 0;"></div>
-                <div id="fish4" style="width: 200px; height: 100px; background-image: url(./assets/vis4/frame_1.png); background-repeat: no-repeat, repeat; position: absolute; top: 535; left: 0;"></div>
+    <div id="content-container">
+        <div id="header" class="image"></div>
+        <div id="race-container">
+            <div id="water" class="image">
+                <div id="fish1" class="fish image"></div>
+                <div id="fish3" class="fish image"></div>
+                <div id="fish2" class="fish image"></div>
+                <div id="fish4" class="fish image"></div>
             </div>
-            <div id="finish" style="background-image: url(./assets/finish_line/finish.png); background-repeat: no-repeat, repeat; width: 25px; height: 500px;"></div>
-            </div>
+        <div id="finish" class="image"></div>
         </div>
     </div>
     
@@ -62,13 +115,10 @@
 
         const createFishMovement = (element) => {
             var start = startWater;
-            console.log(element.style);
 
             return setInterval(() => { 
             let number = Math.floor(Math.random() * 100);
             const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
-
-            let majorSetback = Math.floor(Math.random() * 10000);
             
             if (number < changeToMoveForward) {
                 start += movement;
@@ -76,14 +126,10 @@
                 start -= movement;
             }
 
-            if (majorSetback === 2) {
-                console.log('major setback');
-                start -= majorSetBackAmount;
-            }
-            
             var nose = getOffset( element ).left + widthFish;  
             
             if (nose > finishLine) {
+                // element.id to get the name of the id of the fish that won
                 winner = 'fish1';
 
                 console.log('finish line ', winner)
