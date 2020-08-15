@@ -15,6 +15,7 @@
       } 
       
       #water {
+        position: relative;
         background-image: url(./assets/water/frame_1.png); 
         /* width: 886px;  */
         /* height: 500px; */
@@ -46,26 +47,26 @@
 
         max-width: 200px;
         max-height: 100px;
-        width: 15%;
+        width: 20%;
 
         position: absolute;
         left: 0;
       }
 
       #fish1 {
-        top: 165; 
+        top: 7%; 
       }
       
       #fish2 {
-        top: 300; 
+        top: 32%; 
       }
       
       #fish3 {
-        top: 420; 
+        top: 57%; 
       }
 
       #fish4 {
-        top: 550; 
+        top: 80%; 
       }
 
       #finish {
@@ -107,9 +108,7 @@
     <script>
         const time = 20;
         const changeToMoveForward = 55;
-        const majorSetBackAmount = 400;
         const maxAmountOfForwardMovement = 10;
-        const widthFish = 200;
         const finishLineWidth = 25;
 
         var fish1 = document.getElementById("fish1");
@@ -117,6 +116,10 @@
         var fish3 = document.getElementById("fish3");
         var fish4 = document.getElementById("fish4");
         var finish = document.getElementById("finish");
+
+        const widthFish = fish1.offsetWidth;
+
+        console.log(widthFish);
 
         function getOffset( el ) {
             var _x = 0;
@@ -130,7 +133,7 @@
         }
 
         var finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
-        const startWater = getOffset(document.getElementById("water")).left;
+        const startWater = 0;
         
         var winner;
 
