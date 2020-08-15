@@ -16,8 +16,14 @@
       
       #water {
         background-image: url(./assets/water/frame_1.png); 
-        width: 886px; 
-        height: 500px;
+        /* width: 886px;  */
+        /* height: 500px; */
+
+        max-width: 886px;
+        max-height: 500px;
+
+        width: 100vw; 
+        height: 100vh;
       }
 
       .image {
@@ -35,46 +41,46 @@
       }
 
       .fish {
-        width: 200px; 
-        height: 100px;
+        /* width: 200px; 
+        height: 100px; */
+
+        max-width: 200px;
+        max-height: 100px;
+        width: 15%;
+
         position: absolute;
         left: 0;
       }
 
       #fish1 {
-        background-image: url(./assets/fish1/frame_1.png);
         top: 165; 
       }
       
       #fish2 {
-        background-image: url(./assets/fish2/frame_1.png);
         top: 300; 
       }
       
       #fish3 {
-        background-image: url(./assets/fish3/frame_1.png);
         top: 420; 
       }
 
       #fish4 {
-        background-image: url(./assets/fish4/frame_1.png);
         top: 550; 
       }
 
       #finish {
-        background-image: url(./assets/finish_line/finish.png); 
         width: 25px; 
         height: 500px;
       }
 
       #winner {
-          margin-top: 20px;
+        margin-top: 20px;
         width: 200px; 
         height: 100px;
       }
 
       #winnerTitle {
-          font-size: 25px;
+        font-size: 25px;
       }
   </style>
 
@@ -85,12 +91,12 @@
         <div id="header" class="image"></div>
         <div id="race-container">
             <div id="water" class="image">
-                <div id="fish1" class="fish image"></div>
-                <div id="fish3" class="fish image"></div>
-                <div id="fish2" class="fish image"></div>
-                <div id="fish4" class="fish image"></div>
+                <img id="fish1" class="fish" src="./assets/fish1/frame_1.png">
+                <img id="fish3" class="fish" src="./assets/fish2/frame_1.png">
+                <img id="fish2" class="fish" src="./assets/fish3/frame_1.png">
+                <img id="fish4" class="fish" src="./assets/fish4/frame_1.png">
             </div>
-        <div id="finish" class="image"></div>
+        <img id="finish" class="image" src="./assets/finish_line/finish.png">
         </div>
         <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
             <div id="winnerTitle"></div>
@@ -165,29 +171,30 @@
         const movingFish3 = createFishMovement(fish3);
         const movingFish4 = createFishMovement(fish4);
         
-        const changeFishImage = (fish) => {
-            var style = fish.currentStyle || window.getComputedStyle(fish, false);
-            const currentBackgroundImageUrl = style.backgroundImage;
-            if (currentBackgroundImageUrl.search("frame_1") !== -1) {
-                fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_1", "frame_2");
-            } else {
-                fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_2", "frame_1");
-            }
-        }
+        // const changeFishImage = (fish) => {
+        //     var style = fish.currentStyle || window.getComputedStyle(fish, false);
+        //     const currentBackgroundImageUrl = style.backgroundImage;
+        //     if (currentBackgroundImageUrl.search("frame_1") !== -1) {
+        //         fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_1", "frame_2");
+        //     } else {
+        //         fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_2", "frame_1");
+        //     }
+        // }
 
-        const changeFishes = setInterval(() => {
-            changeFishImage(document.getElementById('fish1'));
-            changeFishImage(document.getElementById('fish2'));
-            changeFishImage(document.getElementById('fish3'));
-            changeFishImage(document.getElementById('fish4'));
-        }, 1000)
+        // const changeFishes = setInterval(() => {
+        //     changeFishImage(document.getElementById('fish1'));
+        //     changeFishImage(document.getElementById('fish2'));
+        //     changeFishImage(document.getElementById('fish3'));
+        //     changeFishImage(document.getElementById('fish4'));
+        // }, 1000);
+
         setInterval(() => {
             if (winner) {
                 clearInterval(movingFish1);
                 clearInterval(movingFish2);
                 clearInterval(movingFish3);
                 clearInterval(movingFish4);
-                clearInterval(changeFishes);
+                // clearInterval(changeFishes);
             }
         }, time);
     </script>
