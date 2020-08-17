@@ -10,24 +10,14 @@
       #header {
         margin-top: 30px;
         margin-bottom: 50px;
-
-        /* max-width: 720px;
-        width: 80vw;
-        
-        max-height: 65px; 
-        height: 100vh; */
       } 
       
       #water {
         position: relative;
         background-image: url(./assets/water/frame_1.png); 
         
-        /* max-width: 886px; */
-        /* width: 80vw;  */
         width: 886px;
         
-        /* max-height: 500px; */
-        /* height: 100vh; */
         height: 500px;
       }
 
@@ -46,10 +36,8 @@
       }
 
       .fish {
-        max-width: 200px;
-        max-height: 100px;
-        
-        width: 20%;
+        width: 200px;
+        height: 100px;
 
         position: absolute;
         left: 0;
@@ -73,19 +61,6 @@
 
       #finish {
         width: 25px; 
-        
-        max-height: 500px;
-        height: 100vh;
-      }
-
-      #winner {
-        margin-top: 20px;
-        width: 200px; 
-        height: 100px;
-      }
-
-      #winnerTitle {
-        font-size: 25px;
       }
   </style>
 
@@ -104,10 +79,6 @@
               </div>
           <img id="finish" class="image" src="./assets/finish_line/finish.png">
           </div>
-          <!-- <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
-              <div id="winnerTitle"></div>
-              <div id="winner" class="image"></div>
-          </div> -->
       </div>
   </div>
     
@@ -126,12 +97,6 @@
         
         var water = document.getElementById("water");
         var finish = document.getElementById("finish");
-        
-        // Not sure if this is the right way to get the screen size
-        // I have the feeling that if the header becomes smaller as well that this way of gettings the screen size
-        // wont work anymore
-        // const widthContentContainer = contentContainer.offsetWidth;
-        // const heightContentContainer = contentContainer.offsetHeight;
 
         const widthContentContainer = 825;
         const heightContentContainer = 645;
@@ -181,16 +146,7 @@
             var nose = getOffset( element ).left + widthFish;  
             
             if (nose > finishLine) {
-                //  to get the name of the id of the fish that won
                 winner = element.id;
-
-                // console.log(winnerFish);
-                
-                // const winnerElement = document.getElementById("winner");
-                // winnerElement.style.backgroundImage = 'url(./assets/' + winner + '/frame_1.png)';
-                
-                // const winnerTitleElement = document.getElementById("winnerTitle");
-                // winnerTitleElement.innerHTML = "Congrats!!"
             }
     
             element.style.left = start.toString() + 'px';
@@ -202,30 +158,12 @@
         const movingFish3 = createFishMovement(fish3);
         const movingFish4 = createFishMovement(fish4);
         
-        // const changeFishImage = (fish) => {
-        //     var style = fish.currentStyle || window.getComputedStyle(fish, false);
-        //     const currentBackgroundImageUrl = style.backgroundImage;
-        //     if (currentBackgroundImageUrl.search("frame_1") !== -1) {
-        //         fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_1", "frame_2");
-        //     } else {
-        //         fish.style.backgroundImage = currentBackgroundImageUrl.replace("frame_2", "frame_1");
-        //     }
-        // }
-
-        // const changeFishes = setInterval(() => {
-        //     changeFishImage(document.getElementById('fish1'));
-        //     changeFishImage(document.getElementById('fish2'));
-        //     changeFishImage(document.getElementById('fish3'));
-        //     changeFishImage(document.getElementById('fish4'));
-        // }, 1000);
-
         setInterval(() => {
             if (winner) {
                 clearInterval(movingFish1);
                 clearInterval(movingFish2);
                 clearInterval(movingFish3);
                 clearInterval(movingFish4);
-                // clearInterval(changeFishes);
             }
         }, time);
     </script>
