@@ -4,28 +4,31 @@
 
   <title>Fish race</title>
   <meta name="description" content="Fish race">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
       #header {
         margin-top: 30px;
         margin-bottom: 50px;
 
-        max-width: 720px;
+        /* max-width: 720px;
         width: 80vw;
         
         max-height: 65px; 
-        height: 100vh;
+        height: 100vh; */
       } 
       
       #water {
         position: relative;
         background-image: url(./assets/water/frame_1.png); 
         
-        max-width: 886px;
-        width: 80vw; 
-
-        max-height: 500px;
-        height: 100vh;
+        /* max-width: 886px; */
+        /* width: 80vw;  */
+        width: 886px;
+        
+        /* max-height: 500px; */
+        /* height: 100vh; */
+        height: 500px;
       }
 
       .image {
@@ -69,10 +72,7 @@
       }
 
       #finish {
-        width: 25px; 
-        
-        max-height: 500px;
-        height: 100vh;
+        width: 25px;
       }
 
       #winner {
@@ -129,29 +129,19 @@
         // const heightContentContainer = contentContainer.offsetHeight;
 
         const widthContentContainer = 825;
-        const heightContentContainer = 1031;
+        const heightContentContainer = 645;
 
         const screenWidth = window.screen.availWidth;
         const screenHeight = window.screen.availHeight;
 
-        console.log(window.screen);
+        if (screenWidth < widthContentContainer) {
+          scale = Math.min(
+            screenWidth / widthContentContainer,    
+            screenHeight / heightContentContainer
+          ) * 0.8;
 
-        scale = Math.min(
-          screenWidth / widthContentContainer,    
-          screenHeight / heightContentContainer
-        );
-
-        console.log(widthContentContainer);
-        console.log(heightContentContainer);
-        console.log(screenWidth);
-        console.log(screenHeight);
-
-        console.log(scale);
-
-        contentContainer.style.transform = "scale(" + scale + ")";
-
-        // water.style.transform = "scale(" + 0.6 + ")";
-
+          contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
+        }
         const widthFish = fish1.offsetWidth;
 
         function getOffset( el ) {
@@ -191,11 +181,11 @@
 
                 // console.log(winnerFish);
                 
-                const winnerElement = document.getElementById("winner");
-                winnerElement.style.backgroundImage = 'url(./assets/' + winner + '/frame_1.png)';
+                // const winnerElement = document.getElementById("winner");
+                // winnerElement.style.backgroundImage = 'url(./assets/' + winner + '/frame_1.png)';
                 
-                const winnerTitleElement = document.getElementById("winnerTitle");
-                winnerTitleElement.innerHTML = "Congrats!!"
+                // const winnerTitleElement = document.getElementById("winnerTitle");
+                // winnerTitleElement.innerHTML = "Congrats!!"
             }
     
             element.style.left = start.toString() + 'px';
