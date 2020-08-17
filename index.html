@@ -100,10 +100,10 @@
             </div>
         <img id="finish" class="image" src="./assets/finish_line/finish.png">
         </div>
-        <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
+        <!-- <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
             <div id="winnerTitle"></div>
             <div id="winner" class="image"></div>
-        </div>
+        </div> -->
     </div>
     
     <script>
@@ -111,16 +111,48 @@
         const changeToMoveForward = 55;
         const maxAmountOfForwardMovement = 10;
         const finishLineWidth = 25;
-
+        
+        var contentContainer = document.getElementById("content-container");
+        
         var fish1 = document.getElementById("fish1");
         var fish2 = document.getElementById("fish2");
         var fish3 = document.getElementById("fish3");
         var fish4 = document.getElementById("fish4");
+        
+        var water = document.getElementById("water");
         var finish = document.getElementById("finish");
+        
+        // Not sure if this is the right way to get the screen size
+        // I have the feeling that if the header becomes smaller as well that this way of gettings the screen size
+        // wont work anymore
+        // const widthContentContainer = contentContainer.offsetWidth;
+        // const heightContentContainer = contentContainer.offsetHeight;
+
+        const widthContentContainer = 825;
+        const heightContentContainer = 1031;
+
+        const screenWidth = window.screen.availWidth;
+        const screenHeight = window.screen.availHeight;
+
+        console.log(window.screen);
+
+        scale = Math.min(
+          screenWidth / widthContentContainer,    
+          screenHeight / heightContentContainer
+        );
+
+        console.log(widthContentContainer);
+        console.log(heightContentContainer);
+        console.log(screenWidth);
+        console.log(screenHeight);
+
+        console.log(scale);
+
+        contentContainer.style.transform = "scale(" + scale + ")";
+
+        // water.style.transform = "scale(" + 0.6 + ")";
 
         const widthFish = fish1.offsetWidth;
-
-        console.log(widthFish);
 
         function getOffset( el ) {
             var _x = 0;
