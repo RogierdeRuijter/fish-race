@@ -134,7 +134,7 @@
         const screenWidth = window.screen.availWidth;
         const screenHeight = window.screen.availHeight;
 
-        if (screenWidth < widthContentContainer) {
+        // if (screenWidth < widthContentContainer) {
           scale = Math.min(
             screenWidth / widthContentContainer,    
             screenHeight / heightContentContainer
@@ -153,7 +153,7 @@
                 el = el.offsetParent;
             }
             return { top: _y, left: _x };
-        }
+        // }
 
         var finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
         const startWater = 0;
