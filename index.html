@@ -4,31 +4,28 @@
 
   <title>Fish race</title>
   <meta name="description" content="Fish race">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
       #header {
         margin-top: 30px;
         margin-bottom: 50px;
 
-        /* max-width: 720px;
+        max-width: 720px;
         width: 80vw;
         
         max-height: 65px; 
-        height: 100vh; */
+        height: 100vh;
       } 
       
       #water {
         position: relative;
         background-image: url(./assets/water/frame_1.png); 
         
-        /* max-width: 886px; */
-        /* width: 80vw;  */
-        width: 886px;
-        
-        /* max-height: 500px; */
-        /* height: 100vh; */
-        height: 500px;
+        max-width: 886px;
+        width: 80vw; 
+
+        max-height: 500px;
+        height: 100vh;
       }
 
       .image {
@@ -72,7 +69,10 @@
       }
 
       #finish {
-        width: 25px;
+        width: 25px; 
+        
+        max-height: 500px;
+        height: 100vh;
       }
 
       #winner {
@@ -100,10 +100,10 @@
             </div>
         <img id="finish" class="image" src="./assets/finish_line/finish.png">
         </div>
-        <!-- <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
+        <div style="margin-top:100px; display:flex; flex-direction:column; align-items: center;"> 
             <div id="winnerTitle"></div>
             <div id="winner" class="image"></div>
-        </div> -->
+        </div>
     </div>
     
     <script>
@@ -111,38 +111,16 @@
         const changeToMoveForward = 55;
         const maxAmountOfForwardMovement = 10;
         const finishLineWidth = 25;
-        
-        var contentContainer = document.getElementById("content-container");
-        
+
         var fish1 = document.getElementById("fish1");
         var fish2 = document.getElementById("fish2");
         var fish3 = document.getElementById("fish3");
         var fish4 = document.getElementById("fish4");
-        
-        var water = document.getElementById("water");
         var finish = document.getElementById("finish");
-        
-        // Not sure if this is the right way to get the screen size
-        // I have the feeling that if the header becomes smaller as well that this way of gettings the screen size
-        // wont work anymore
-        // const widthContentContainer = contentContainer.offsetWidth;
-        // const heightContentContainer = contentContainer.offsetHeight;
 
-        const widthContentContainer = 825;
-        const heightContentContainer = 645;
-
-        const screenWidth = window.screen.availWidth;
-        const screenHeight = window.screen.availHeight;
-
-        // if (screenWidth < widthContentContainer) {
-          scale = Math.min(
-            screenWidth / widthContentContainer,    
-            screenHeight / heightContentContainer
-          ) * 0.8;
-
-          contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
-        // }
         const widthFish = fish1.offsetWidth;
+
+        console.log(widthFish);
 
         function getOffset( el ) {
             var _x = 0;
@@ -181,11 +159,11 @@
 
                 // console.log(winnerFish);
                 
-                // const winnerElement = document.getElementById("winner");
-                // winnerElement.style.backgroundImage = 'url(./assets/' + winner + '/frame_1.png)';
+                const winnerElement = document.getElementById("winner");
+                winnerElement.style.backgroundImage = 'url(./assets/' + winner + '/frame_1.png)';
                 
-                // const winnerTitleElement = document.getElementById("winnerTitle");
-                // winnerTitleElement.innerHTML = "Congrats!!"
+                const winnerTitleElement = document.getElementById("winnerTitle");
+                winnerTitleElement.innerHTML = "Congrats!!"
             }
     
             element.style.left = start.toString() + 'px';
