@@ -110,18 +110,23 @@
 
         const widthContentContainer = 825;
         const heightContentContainer = 645;
+        
+        const resizeContentContainer = () => {
+          const screenWidth = window.screen.availWidth;
+          const screenHeight = window.screen.availHeight;
 
-        const screenWidth = window.screen.availWidth;
-        const screenHeight = window.screen.availHeight;
+          if (screenWidth < widthContentContainer) {
+            scale = Math.min(
+              screenWidth / widthContentContainer,    
+              screenHeight / heightContentContainer
+            ) * 0.8;
 
-        if (screenWidth < widthContentContainer) {
-          scale = Math.min(
-            screenWidth / widthContentContainer,    
-            screenHeight / heightContentContainer
-          ) * 0.8;
-
-          contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
+            contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
+          }
         }
+
+        resizeContentContainer();
+        
         const widthFish = fish1.offsetWidth;
 
         function getOffset( el ) {
@@ -141,6 +146,8 @@
         }
 
         window.addEventListener('resize', () => {
+          resizeContentContainer();
+
           calculateFinishLinePosition();
         }, true);
 
