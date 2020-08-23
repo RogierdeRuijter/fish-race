@@ -134,16 +134,24 @@
             }
             return { top: _y, left: _x };
         }
+        var finishLine = 0;
+        
+        const calculateFinishLinePosition = () => {
+          finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
+        }
 
-        var finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
+        window.addEventListener('resize', () => {
+          calculateFinishLinePosition();
+        }, true);
+
+        calculateFinishLinePosition();
+
         const startWater = 0;
         
         var winner;
         
         setInterval(() => {
             if (winner) {
-                console.log('in winner')
-                console.log(movingFish1)
                 cancelAnimationFrame(movingFish1.id);
                 cancelAnimationFrame(movingFish2.id);
                 cancelAnimationFrame(movingFish3.id);
