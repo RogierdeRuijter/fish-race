@@ -144,25 +144,27 @@
             var start = startWater;
 
             return setInterval(() => { 
-            let number = Math.floor(Math.random() * 100);
-            const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
+              requestAnimationFrame(() => {
+                let number = Math.floor(Math.random() * 100);
+                const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
             
-            if (number < changeToMoveForward) {
-                start += movement;
-            } else {
-                start -= movement;
-            }
+                if (number < changeToMoveForward) {
+                    start += movement;
+                } else {
+                    start -= movement;
+                }
 
-            var nose = getOffset( element ).left + widthFish;  
-            
-            if (nose > finishLine) {
-                winner = element.id;
+                var nose = getOffset( element ).left + widthFish;  
+                
+                if (nose > finishLine) {
+                    winner = element.id;
 
-                const winnerElement = document.getElementById(winner);
-                winnerElement.src = './assets/' + winner + '/winner.png';
-            }
-    
-            element.style.left = start.toString() + 'px';
+                    const winnerElement = document.getElementById(winner);
+                    winnerElement.src = './assets/' + winner + '/winner.png';
+                }
+        
+                element.style.left = start.toString() + 'px';
+              });
             }, time);
         }
 
