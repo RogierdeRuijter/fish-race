@@ -139,12 +139,22 @@
         const startWater = 0;
         
         var winner;
+        
+        setInterval(() => {
+            if (winner) {
+                console.log('in winner')
+                console.log(movingFish1)
+                cancelAnimationFrame(movingFish1.id);
+                cancelAnimationFrame(movingFish2.id);
+                cancelAnimationFrame(movingFish3.id);
+                cancelAnimationFrame(movingFish4.id);  
+            }
+        }, time);
 
-        const createFishMovement = (element) => {
+        const createFishMovement = (element, obj) => {
             var start = startWater;
 
-            return setInterval(() => { 
-              requestAnimationFrame(() => {
+            const move = () => {
                 let number = Math.floor(Math.random() * 100);
                 const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
             
@@ -164,23 +174,20 @@
                 }
         
                 element.style.left = start.toString() + 'px';
-              });
-            }, time);
-        }
-
-        const movingFish1 = createFishMovement(fish1);
-        const movingFish2 = createFishMovement(fish2);
-        const movingFish3 = createFishMovement(fish3);
-        const movingFish4 = createFishMovement(fish4);
-        
-        setInterval(() => {
-            if (winner) {
-                clearInterval(movingFish1);
-                clearInterval(movingFish2);
-                clearInterval(movingFish3);
-                clearInterval(movingFish4);
+                obj.id = requestAnimationFrame(move);
+              };
+              requestAnimationFrame(move);
             }
-        }, time);
+
+        let movingFish1 = {id: null};
+        let movingFish2 = {id: null};
+        let movingFish3 = {id: null};
+        let movingFish4 = {id: null};
+
+        createFishMovement(fish1, movingFish1);
+        createFishMovement(fish2, movingFish2);
+        createFishMovement(fish3, movingFish3);
+        createFishMovement(fish4, movingFish4);
     </script>
 </body>
 </html>
