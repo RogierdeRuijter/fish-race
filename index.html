@@ -113,8 +113,8 @@
         const heightContentContainer = 645;
         
         const resizeContentContainer = () => {
-          const screenWidth = window.innerWidth;
-          const screenHeight = window.innerHeight;
+          const screenWidth = Math.min(window.innerWidth, window.outerWidth);
+          const screenHeight = Math.min(window.innerHeight, window.outerHeight);
 
           if (screenWidth < widthContentContainer) {
             scale = Math.min(
