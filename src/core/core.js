@@ -54,7 +54,6 @@ const calculateFinishLinePosition = () => {
 
 window.addEventListener('resize', () => {
     resizeContentContainer();
-
     calculateFinishLinePosition();
 }, true);
 
@@ -97,10 +96,10 @@ let movingFish2 = {id: null};
 let movingFish3 = {id: null};
 let movingFish4 = {id: null};
 
-createFishMovement(fish1, movingFish1);
-createFishMovement(fish2, movingFish2);
-createFishMovement(fish3, movingFish3);
-createFishMovement(fish4, movingFish4);
+// createFishMovement(fish1, movingFish1);
+// createFishMovement(fish2, movingFish2);
+// createFishMovement(fish3, movingFish3);
+// createFishMovement(fish4, movingFish4);
 
 setInterval(() => {
     if (winner) {
