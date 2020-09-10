@@ -24,11 +24,11 @@ fish2.addEventListener('click', betFunctionFish2);
 fish3.addEventListener('click', betFunctionFish3);
 fish4.addEventListener('click', betFunctionFish4);
 
-// setInterval(() => {
-//     if (winner) {
-//         fish1.removeEventListener(func);
-//         fish2.removeEventListener(func);
-//         fish3.removeEventListener(func);
-//         fish4.removeEventListener(func);
-//     }
-// }, time);
+setInterval(() => {
+    if (winner) {
+        fish1.removeEventListener(betFunctionFish1);
+        fish2.removeEventListener(betFunctionFish2);
+        fish3.removeEventListener(betFunctionFish3);
+        fish4.removeEventListener(betFunctionFish4);
+    }
+}, time);
