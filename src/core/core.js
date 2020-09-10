@@ -97,10 +97,24 @@ let movingFish2 = {id: null};
 let movingFish3 = {id: null};
 let movingFish4 = {id: null};
 
-createFishMovement(fish1, movingFish1);
-createFishMovement(fish2, movingFish2);
-createFishMovement(fish3, movingFish3);
-createFishMovement(fish4, movingFish4);
+const startElement = document.getElementById('start-button')
+
+const startHover = () => startElement.src ="./assets/startbutton/start_button_hover.png"
+
+const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
+
+startElement.addEventListener("mouseenter", startHover, false)
+startElement.addEventListener("mouseleave", stopHover, false)
+
+const clickStart = () => {
+    startElement.style.display = "none"
+    createFishMovement(fish1, movingFish1);
+    createFishMovement(fish2, movingFish2);
+    createFishMovement(fish3, movingFish3);
+    createFishMovement(fish4, movingFish4);
+}
+
+startElement.addEventListener("click", clickStart, false)
 
 setInterval(() => {
     if (winner) {
