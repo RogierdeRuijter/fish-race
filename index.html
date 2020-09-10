@@ -6,7 +6,9 @@
   <meta name="description" content="Fish race">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <link rel="icon" type="image/png" href="./favicon.svg">
+  
   <link rel="stylesheet" type="text/css" href="src/core/core.css">
+  <link rel="stylesheet" type="text/css" href="src/betting/betting.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175557590-1"></script>
@@ -21,16 +23,30 @@
 <body>
     <div id="content-container">
         <img id="header" class="image" src="./assets/header/frame_1.png">
+        <div id="count-amount"></div>
         <div id="race-container">
             <div id="water" class="image">
-                <img id="fish1" class="fish" src="./assets/fish1/frame_1.png">
-                <img id="fish2" class="fish" src="./assets/fish2/frame_1.png">
-                <img id="fish3" class="fish" src="./assets/fish3/frame_1.png">
-                <img id="fish4" class="fish" src="./assets/fish4/frame_1.png">
+                <span id="fish1" class="fish">
+                  <img src="./assets/fish1/frame_1.png">
+                  <span id="fish1-bet" class="betted-number">0</span>
+                </span>
+                <span id="fish2" class="fish">
+                  <img src="./assets/fish2/frame_1.png">
+                  <span id="fish2-bet" class="betted-number">0</span>
+                </span>
+                <span id="fish3" class="fish">
+                  <img src="./assets/fish3/frame_1.png">
+                  <span id="fish3-bet" class="betted-number">0</span>
+                </span>
+                <span id="fish4" class="fish">
+                  <img src="./assets/fish4/frame_1.png">
+                  <span id="fish4-bet" class="betted-number">0</span>
+                </span>
             </div>
           <img id="finish" class="image" src="./assets/finish_line/finish.png">
         </div>
     </div>
     <script async src="src/core/core.js"></script>
+    <script async src="src/betting/betting.js"></script>
 </body>
 </html>
