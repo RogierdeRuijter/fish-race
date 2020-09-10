@@ -76,9 +76,7 @@
         width: 25px; 
       }
   </style>
-
 </head>
-
 <body>
     <div id="content-container">
         <img id="header" class="image" src="./assets/header/frame_1.png">
@@ -160,26 +158,17 @@
         
         var winner;
         
-        setInterval(() => {
-            if (winner) {
-                cancelAnimationFrame(movingFish1.id);
-                cancelAnimationFrame(movingFish2.id);
-                cancelAnimationFrame(movingFish3.id);
-                cancelAnimationFrame(movingFish4.id);  
-            }
-        }, time);
-
         const createFishMovement = (element, obj) => {
-            var start = startWater;
+            var position = startWater;
 
             const move = () => {
                 let number = Math.floor(Math.random() * 100);
                 const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
             
                 if (number < changeToMoveForward) {
-                    start += movement;
+                    position += movement;
                 } else {
-                    start -= movement;
+                    position -= movement;
                 }
 
                 var nose = getOffset( element ).left + widthFish;  
@@ -191,7 +180,7 @@
                     winnerElement.src = './assets/' + winner + '/winner.png';
                 }
         
-                element.style.left = start.toString() + 'px';
+                element.style.left = position.toString() + 'px';
                 obj.id = requestAnimationFrame(move);
               };
               requestAnimationFrame(move);
@@ -206,6 +195,16 @@
         createFishMovement(fish2, movingFish2);
         createFishMovement(fish3, movingFish3);
         createFishMovement(fish4, movingFish4);
+
+        setInterval(() => {
+            if (winner) {
+                cancelAnimationFrame(movingFish1.id);
+                cancelAnimationFrame(movingFish2.id);
+                cancelAnimationFrame(movingFish3.id);
+                cancelAnimationFrame(movingFish4.id);  
+            }
+        }, time);
+
     </script>
 </body>
 </html>
