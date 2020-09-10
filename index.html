@@ -6,6 +6,7 @@
   <meta name="description" content="Fish race">
   <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
   <link rel="icon" type="image/png" href="./favicon.svg">
+  <link rel="stylesheet" type="text/css" href="src/core/core.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-175557590-1"></script>
@@ -16,66 +17,6 @@
 
     gtag('config', 'UA-175557590-1');
   </script>
-
-
-  <style>
-      #header {
-        margin-top: 30px;
-        margin-bottom: 50px;
-      } 
-      
-      #water {
-        position: relative;
-        background-image: url(./assets/water/frame_1.png); 
-        
-        width: 886px;
-        height: 500px;
-      }
-
-      .image {
-        background-repeat: no-repeat, repeat;
-      }
-
-      #content-container {
-        display: flex; 
-        flex-direction: column; 
-        align-items: center;
-      }
-      
-      #race-container {
-        display: flex;
-      }
-
-      .fish {
-        position: absolute;
-        transition: left .05s;
-        
-        left: 0;
-        
-        width: 200px;
-        height: 100px;
-      }
-
-      #fish1 {
-        top: 3%; 
-      }
-      
-      #fish2 {
-        top: 28%; 
-      }
-      
-      #fish3 {
-        top: 53%; 
-      }
-
-      #fish4 {
-        top: 78%; 
-      }
-
-      #finish {
-        width: 25px; 
-      }
-  </style>
 </head>
 <body>
     <div id="content-container">
@@ -90,121 +31,6 @@
           <img id="finish" class="image" src="./assets/finish_line/finish.png">
         </div>
     </div>
-  
-    <script>
-        const time = 20;
-        const changeToMoveForward = 55;
-        const maxAmountOfForwardMovement = 10;
-        const finishLineWidth = 25;
-        
-        var contentContainer = document.getElementById("content-container");
-        
-        var fish1 = document.getElementById("fish1");
-        var fish2 = document.getElementById("fish2");
-        var fish3 = document.getElementById("fish3");
-        var fish4 = document.getElementById("fish4");
-        
-        var water = document.getElementById("water");
-        var finish = document.getElementById("finish");
-
-        const widthContentContainer = 825;
-        const heightContentContainer = 645;
-        
-        const resizeContentContainer = () => {
-          const screenWidth = Math.min(window.innerWidth, window.outerWidth);
-          const screenHeight = Math.min(window.innerHeight, window.outerHeight);
-
-          if (screenWidth < widthContentContainer) {
-            scale = Math.min(
-              screenWidth / widthContentContainer,    
-              screenHeight / heightContentContainer
-            ) * 0.8;
-
-            contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
-          } else {
-            contentContainer.style.transform = null;
-          }
-        }
-
-        resizeContentContainer();
-        
-        const widthFish = fish1.offsetWidth;
-
-        function getOffset( el ) {
-            var _x = 0;
-            var _y = 0;
-            while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-                _x += el.offsetLeft - el.scrollLeft;
-                _y += el.offsetTop - el.scrollTop;
-                el = el.offsetParent;
-            }
-            return { top: _y, left: _x };
-        }
-        var finishLine = 0;
-        
-        const calculateFinishLinePosition = () => {
-          finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
-        }
-
-        window.addEventListener('resize', () => {
-          resizeContentContainer();
-
-          calculateFinishLinePosition();
-        }, true);
-
-        calculateFinishLinePosition();
-
-        const startWater = 0;
-        
-        var winner;
-        
-        const createFishMovement = (element, obj) => {
-            var position = startWater;
-
-            const move = () => {
-                let number = Math.floor(Math.random() * 100);
-                const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
-            
-                if (number < changeToMoveForward) {
-                    position += movement;
-                } else {
-                    position -= movement;
-                }
-
-                var nose = getOffset( element ).left + widthFish;  
-                
-                if (nose > finishLine) {
-                    winner = element.id;
-
-                    const winnerElement = document.getElementById(winner);
-                    winnerElement.src = './assets/' + winner + '/winner.png';
-                }
-        
-                element.style.left = position.toString() + 'px';
-                obj.id = requestAnimationFrame(move);
-              };
-              requestAnimationFrame(move);
-            }
-
-        let movingFish1 = {id: null};
-        let movingFish2 = {id: null};
-        let movingFish3 = {id: null};
-        let movingFish4 = {id: null};
-
-        createFishMovement(fish1, movingFish1);
-        createFishMovement(fish2, movingFish2);
-        createFishMovement(fish3, movingFish3);
-        createFishMovement(fish4, movingFish4);
-
-        setInterval(() => {
-            if (winner) {
-                cancelAnimationFrame(movingFish1.id);
-                cancelAnimationFrame(movingFish2.id);
-                cancelAnimationFrame(movingFish3.id);
-                cancelAnimationFrame(movingFish4.id);  
-            }
-        }, time);
-
-    </script>
+    <script async src="src/core/core.js"></script>
 </body>
 </html>
