@@ -27,6 +27,8 @@
   }
 
   .fish {
+    display: inline-block;
+    
     position: absolute;
     transition: left .05s;
     left: 0;

@@ -54,7 +54,6 @@ const calculateFinishLinePosition = () => {
 
 window.addEventListener('resize', () => {
     resizeContentContainer();
-
     calculateFinishLinePosition();
 }, true);
 
@@ -97,6 +96,7 @@ let movingFish2 = {id: null};
 let movingFish3 = {id: null};
 let movingFish4 = {id: null};
 
+<<<<<<< HEAD
 const startElement = document.getElementById('start-button')
 
 const startHover = () => startElement.src ="./assets/startbutton/start_button_hover.png"
@@ -115,6 +115,12 @@ const clickStart = () => {
 }
 
 startElement.addEventListener("click", clickStart, false)
+=======
+// createFishMovement(fish1, movingFish1);
+// createFishMovement(fish2, movingFish2);
+// createFishMovement(fish3, movingFish3);
+// createFishMovement(fish4, movingFish4);
+>>>>>>> develop
 
 setInterval(() => {
     if (winner) {
