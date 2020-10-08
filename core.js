@@ -76,13 +76,15 @@ const createFishMovement = (element, obj) => {
             position -= movement;
         }
 
-        var nose = getOffset( element ).left + widthFish;  
+        var nose = getOffset(element).left + widthFish;  
         
         if (nose > finishLine) {
             winner = element.id;
 
-            const winnerElement = document.getElementById(winner);
-            winnerElement.src = '/assets/' + winner + '/winner.png';
+            const id = 'image-' + winner;
+            const winnerElement = document.getElementById(id);
+
+            winnerElement.src = './assets/' + winner + '/winner.png';
         }
 
         element.style.left = position.toString() + 'px';
