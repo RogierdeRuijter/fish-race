@@ -7,6 +7,8 @@
     position: relative;
     background-image: url('./assets/water/frame_1.png'); 
     
+    clip-path: inset( -100vw -100vw -100vw 0 );
+    
     width: 886px;
     height: 500px;
   }
@@ -68,3 +70,19 @@
     max-width: 150px;
     top: 45.6%;
   }
+
+  /* .winner-fish-1 {
+    background-image: url('./assets/fish1/winner.png'); 
+  }
+
+  .winner-fish-2 {
+    background-image: url('./assets/fish2/winner.png'); 
+  }
+
+  .winner-fish-3 {
+    background-image: url('./assets/fish3/winner.png'); 
+  }
+
+  .winner-fish-4 {
+    background-image: url('./assets/fish4/winner.png'); 
+  } */
