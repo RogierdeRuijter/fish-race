@@ -61,3 +61,10 @@
     display:none;
     top: 45.6%;
   }
+
+  .fiver {
+    position: absolute;
+    display:none;
+    max-width: 150px;
+    top: 45.6%;
+  }
