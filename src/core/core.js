@@ -115,6 +115,24 @@ const clickStart = () => {
 
 startElement.addEventListener("click", clickStart, false)
 
+// Countdown at visit of the webpage
+var count = 5;
+
+setInterval(() => {
+    if ( count == 5 ) {
+        
+    } else if ( count == 4 ){
+
+    } else if ( count == 3 ){
+
+    } else if ( count == 2 ){
+
+    } else if ( count == 1 ){
+        clickStart()
+    }
+    count-=1;    
+}, 1000)
+
 setInterval(() => {
     if (winner) {
         cancelAnimationFrame(movingFish1.id);

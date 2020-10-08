@@ -58,5 +58,6 @@
   
   #start-button {
     position: absolute;
+    display:none;
     top: 45.6%;
   }
