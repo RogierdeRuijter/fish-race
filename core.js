@@ -82,7 +82,7 @@ const createFishMovement = (element, obj) => {
             winner = element.id;
 
             const winnerElement = document.getElementById(winner);
-            winnerElement.src = './assets/' + winner + '/winner.png';
+            winnerElement.src = '/assets/' + winner + '/winner.png';
         }
 
         element.style.left = position.toString() + 'px';
@@ -98,7 +98,7 @@ let movingFish4 = {id: null};
 
 const startElement = document.getElementById('start-button')
 
-const startHover = () => startElement.src ="./assets/startbutton/start_button_hover.png"
+const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
 
 const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
 
