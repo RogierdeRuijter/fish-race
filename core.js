@@ -117,17 +117,19 @@ startElement.addEventListener("click", clickStart, false)
 
 // Countdown at visit of the webpage
 var count = 5;
+const fiverElement = document.getElementById('fiver')
 
 setInterval(() => {
     if ( count == 5 ) {
-        
+        fiverElement.src="./assets/fives/five2.jpg"
     } else if ( count == 4 ){
-
+        fiverElement.src="./assets/fives/five3.png"
     } else if ( count == 3 ){
-
+        fiverElement.src="./assets/fives/five4.gif"
     } else if ( count == 2 ){
-
+        fiverElement.src="./assets/fives/five5.jpg"
     } else if ( count == 1 ){
+        fiverElement.style.display="none"
         clickStart()
     }
     count-=1;    
