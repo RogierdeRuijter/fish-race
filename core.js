@@ -81,10 +81,10 @@ const createFishMovement = (element, obj) => {
         if (nose > finishLine) {
             winner = element.id;
 
-            const id = 'image-' + winner;
+            const id = 'crown-' + winner;
             const winnerElement = document.getElementById(id);
-
-            winnerElement.src = './assets/' + winner + '/winner.png';
+            
+            winnerElement.style.display = 'inline-block';
         }
 
         element.style.left = position.toString() + 'px';
