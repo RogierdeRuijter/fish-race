@@ -118,23 +118,34 @@ const clickStart = () => {
 startElement.addEventListener("click", clickStart, false)
 
 // Countdown at visit of the webpage
-var count = 5;
-const fiverElement = document.getElementById('fiver')
+var count = 8;
+const counterElement = document.getElementById('counter')
+
+// choosemsg
+const msgElement = document.getElementById('choosemsg')
 
 setInterval(() => {
-    if ( count == 5 ) {
-        fiverElement.src="./assets/fives/five2.jpg"
-    } else if ( count == 4 ){
-        fiverElement.src="./assets/fives/five3.png"
-    } else if ( count == 3 ){
-        fiverElement.src="./assets/fives/five4.gif"
-    } else if ( count == 2 ){
-        fiverElement.src="./assets/fives/five5.jpg"
-    } else if ( count == 1 ){
-        fiverElement.style.display="none"
+    if ( count == 9 ) {
+        
+    } else if ( count == 8 ) {
+        msgElement.style.display="block"
+    } else if ( count == 7 ) {
+        msgElement.style.display="none"
+    } else if ( count == 6 ) {
+        msgElement.style.display="block"
+    } else if ( count == 5 ) {
+        counterElement.src="./assets/countfish/fish3.png"
+    } else if ( count == 4 ) {
+        counterElement.src="./assets/countfish/fish2.png"
+    } else if ( count == 3 ) {
+        counterElement.src="./assets/countfish/fish1.png"
+    } else if ( count == 2 ) {
+        counterElement.src="./assets/countfish/fish0.png"
+    } else if ( count == 1 ) {
+        counterElement.style.display="none"
         clickStart()
     }
-    count-=1;    
+    count-=1;
 }, 1000)
 
 setInterval(() => {
