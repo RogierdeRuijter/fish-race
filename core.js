@@ -1,4 +1,3 @@
-const finishLineWidth = 25;
 
 const whoWinContainer = document.getElementById("who-win-container");
 
@@ -12,18 +11,7 @@ const finish = document.getElementById("finish");
 
 const widthFish = fish1.offsetWidth;
 
-var finishLine = 0;
-
-const calculateFinishLinePosition = () => {
-    finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
-}
-
-window.addEventListener('resize', () => {
-    resizeContentContainer();
-    calculateFinishLinePosition();
-}, true);
-
-calculateFinishLinePosition();
+let finishLine = 0;
 
 const startWater = 0;
 
