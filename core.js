@@ -1,5 +1,3 @@
-
-
 const finishLineWidth = 25;
 
 const contentContainer = document.getElementById("content-container");
@@ -110,21 +108,21 @@ const createFishMovement = (fishElement) => {
     }, time);
 }
 
-const startElement = document.getElementById('start-button')
+// const startElement = document.getElementById('start-button')
 
-const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
+// const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
 
-const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
+// const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
 
-startElement.addEventListener("mouseenter", startHover, false)
-startElement.addEventListener("mouseleave", stopHover, false)
+// startElement.addEventListener("mouseenter", startHover, false)
+// startElement.addEventListener("mouseleave", stopHover, false)
 
 let movingFish1;
 let movingFish2;
 let movingFish3;
 let movingFish4;
 
-const clickStart = () => {
+const startRace = () => {
     startElement.style.display = "none"
     movingFish1 = createFishMovement(fish1);
     movingFish2 = createFishMovement(fish2);
@@ -132,7 +130,7 @@ const clickStart = () => {
     movingFish4 = createFishMovement(fish4);
 }
 
-startElement.addEventListener("click", clickStart, false)
+// startElement.addEventListener("click", clickStart, false)
 
 // Countdown at visit of the webpage
 var count = 11;
@@ -149,35 +147,39 @@ const showWhoWin = () => {
     whoWinContainer.style.display = 'flex';
 };
 
-setInterval(() => {
-    if (count === 10) {
-        showWhoWin();
-    } else if ( count == 9 ) {
-        hideWhoWin();
-    } else if ( count == 8 ) {
-        showWhoWin();
-    } else if ( count == 7 ) {
-        hideWhoWin();
-    } else if ( count == 6 ) {
-        showWhoWin();
-    } else if ( count == 5 ) {
-        hideWhoWin();
-        counterElement3.style.display = 'block';
-    } else if ( count == 4 ) {
-        counterElement3.style.display = 'none';
-        counterElement2.style.display = 'block';
-    } else if ( count == 3 ) {
-        counterElement2.style.display = 'none';
-        counterElement1.style.display = 'block';
-    } else if ( count == 2 ) {
-        counterElement1.style.display = 'none';
-        counterGo.style.display = 'block';
-    } else if ( count == 1 ) {
-        counterGo.style.display = "none"
-        clickStart()
-    }
-    count-=1;
-}, 1000);
+const start = () => {
+    setInterval(() => {
+        if (count === 10) {
+            showWhoWin();
+        } else if ( count == 9 ) {
+            hideWhoWin();
+        } else if ( count == 8 ) {
+            showWhoWin();
+        } else if ( count == 7 ) {
+            hideWhoWin();
+        } else if ( count == 6 ) {
+            showWhoWin();
+        } else if ( count == 5 ) {
+            hideWhoWin();
+            counterElement3.style.display = 'block';
+        } else if ( count == 4 ) {
+            counterElement3.style.display = 'none';
+            counterElement2.style.display = 'block';
+        } else if ( count == 3 ) {
+            counterElement2.style.display = 'none';
+            counterElement1.style.display = 'block';
+        } else if ( count == 2 ) {
+            counterElement1.style.display = 'none';
+            counterGo.style.display = 'block';
+        } else if ( count == 1 ) {
+            counterGo.style.display = "none"
+            startRace()
+        }
+        count-=1;
+    }, 1000);
+}
+
+start();
 
 setInterval(() => {
     if (winner) {
