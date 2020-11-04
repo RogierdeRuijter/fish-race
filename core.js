@@ -1,5 +1,3 @@
-
-
 const finishLineWidth = 25;
 
 const contentContainer = document.getElementById("content-container");
@@ -124,8 +122,7 @@ let movingFish2;
 let movingFish3;
 let movingFish4;
 
-const clickStart = () => {
-    startElement.style.display = "none"
+const startRace = () => {
     movingFish1 = createFishMovement(fish1);
     movingFish2 = createFishMovement(fish2);
     movingFish3 = createFishMovement(fish3);
@@ -149,35 +146,39 @@ const showWhoWin = () => {
     whoWinContainer.style.display = 'flex';
 };
 
-setInterval(() => {
-    if (count === 10) {
-        showWhoWin();
-    } else if ( count == 9 ) {
-        hideWhoWin();
-    } else if ( count == 8 ) {
-        showWhoWin();
-    } else if ( count == 7 ) {
-        hideWhoWin();
-    } else if ( count == 6 ) {
-        showWhoWin();
-    } else if ( count == 5 ) {
-        hideWhoWin();
-        counterElement3.style.display = 'block';
-    } else if ( count == 4 ) {
-        counterElement3.style.display = 'none';
-        counterElement2.style.display = 'block';
-    } else if ( count == 3 ) {
-        counterElement2.style.display = 'none';
-        counterElement1.style.display = 'block';
-    } else if ( count == 2 ) {
-        counterElement1.style.display = 'none';
-        counterGo.style.display = 'block';
-    } else if ( count == 1 ) {
-        counterGo.style.display = "none"
-        clickStart()
-    }
-    count-=1;
-}, 1000);
+const start = () => {
+    setInterval(() => {
+        if (count === 10) {
+            showWhoWin();
+        } else if ( count == 9 ) {
+            hideWhoWin();
+        } else if ( count == 8 ) {
+            showWhoWin();
+        } else if ( count == 7 ) {
+            hideWhoWin();
+        } else if ( count == 6 ) {
+            showWhoWin();
+        } else if ( count == 5 ) {
+            hideWhoWin();
+            counterElement3.style.display = 'block';
+        } else if ( count == 4 ) {
+            counterElement3.style.display = 'none';
+            counterElement2.style.display = 'block';
+        } else if ( count == 3 ) {
+            counterElement2.style.display = 'none';
+            counterElement1.style.display = 'block';
+        } else if ( count == 2 ) {
+            counterElement1.style.display = 'none';
+            counterGo.style.display = 'block';
+        } else if ( count == 1 ) {
+            counterGo.style.display = "none"
+            startRace()
+        }
+        count-=1;
+    }, 1000);
+}
+
+start();
 
 setInterval(() => {
     if (winner) {

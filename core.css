@@ -121,19 +121,19 @@
 .counter {
   display: none;
   position: absolute;
-  width: 50%;
+  width: 26%;
 }
 
 #count-element1 {
-  left: 24%;
+  left: 36%;
 }
 
 #count-element2 {
-  left: 27%;
+  left: 36%;
 }
 
 #count-element3 {
-  left: 23%;
+  left: 36%;
 }
 
 #count-go {
