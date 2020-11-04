@@ -118,6 +118,20 @@
   top: 45.6%;
 }
 
-#counter {
+.counter {
+  display: none;
+  position: absolute;
   width: 50%;
+}
+
+#count-element1 {
+  left: 24%;
+}
+
+#count-element2 {
+  left: 27%;
+}
+
+#count-element3 {
+  left: 23%;
 }
