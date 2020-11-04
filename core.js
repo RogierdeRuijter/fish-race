@@ -1,7 +1,5 @@
 const finishLineWidth = 25;
 
-const contentContainer = document.getElementById("content-container");
-
 const whoWinContainer = document.getElementById("who-win-container");
 
 const fish1 = document.getElementById("fish1");
@@ -11,27 +9,6 @@ const fish4 = document.getElementById("fish4");
 
 const water = document.getElementById("water");
 const finish = document.getElementById("finish");
-
-const widthContentContainer = 825;
-const heightContentContainer = 645;
-
-const resizeContentContainer = () => {
-    const screenWidth = Math.min(window.innerWidth, window.outerWidth);
-    const screenHeight = Math.min(window.innerHeight, window.outerHeight);
-
-    if (screenWidth < widthContentContainer) {
-    scale = Math.min(
-        screenWidth / widthContentContainer,    
-        screenHeight / heightContentContainer
-    ) * 0.8;
-
-    contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
-    } else {
-    contentContainer.style.transform = null;
-    }
-}
-
-resizeContentContainer();
 
 const widthFish = fish1.offsetWidth;
 
