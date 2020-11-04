@@ -1,6 +1,5 @@
-const time = 20;
-const changeToMoveForward = 55;
-const maxAmountOfForwardMovement = 10;
+
+
 const finishLineWidth = 25;
 
 var contentContainer = document.getElementById("content-container");
@@ -63,40 +62,49 @@ const startWater = 0;
 
 var winner;
 
-const createFishMovement = (element, obj) => {
+const time = 20;
+const changeToMoveForward = 55;
+const maxAmountOfForwardMovement = 10;
+const animateThreshold = 30;
+
+const createFishMovement = (fishElement) => {
     var position = startWater;
+    let animate = 0;
+    let currentRotation = 5;
 
-    const move = () => {
-        let number = Math.floor(Math.random() * 100);
-        const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
-    
-        if (number < changeToMoveForward) {
-            position += movement;
-        } else {
-            position -= movement;
-        }
-
-        var nose = getOffset(element).left + widthFish;  
+     return setInterval(() => {
+        requestAnimationFrame(() => {
+            let number = Math.floor(Math.random() * 100);
+            const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
         
-        if (nose > finishLine) {
-            winner = element.id;
+            if (number < changeToMoveForward) {
+                position += movement;
+            } else {
+                position -= movement;
+            }
 
-            const id = 'crown-' + winner;
-            const winnerElement = document.getElementById(id);
-            
-            winnerElement.style.display = 'inline-block';
-        }
+            var nose = getOffset(fishElement).left + widthFish;  
 
-        element.style.left = position.toString() + 'px';
-        obj.id = requestAnimationFrame(move);
-        };
-        requestAnimationFrame(move);
-    }
+            if (nose > finishLine) {
+                winner = fishElement.id;
 
-let movingFish1 = {id: null};
-let movingFish2 = {id: null};
-let movingFish3 = {id: null};
-let movingFish4 = {id: null};
+                const id = 'crown-' + winner;
+
+                const winnerElement = document.getElementById(id);
+                
+                winnerElement.style.display = 'inline-block';
+            }
+            fishElement.style.left = position.toString() + 'px';
+            if (animate >= animateThreshold) {
+                currentRotation *= -1;
+                fishElement.style.transform = 'rotate(' + currentRotation + 'deg)';
+                animate = 0;
+            }
+            animate += 1;
+        });
+
+    }, time);
+}
 
 const startElement = document.getElementById('start-button')
 
@@ -107,12 +115,17 @@ const stopHover = () => startElement.src ="./assets/startbutton/start_button_nul
 startElement.addEventListener("mouseenter", startHover, false)
 startElement.addEventListener("mouseleave", stopHover, false)
 
+let movingFish1;
+let movingFish2;
+let movingFish3;
+let movingFish4;
+
 const clickStart = () => {
     startElement.style.display = "none"
-    createFishMovement(fish1, movingFish1);
-    createFishMovement(fish2, movingFish2);
-    createFishMovement(fish3, movingFish3);
-    createFishMovement(fish4, movingFish4);
+    movingFish1 = createFishMovement(fish1);
+    movingFish2 = createFishMovement(fish2);
+    movingFish3 = createFishMovement(fish3);
+    movingFish4 = createFishMovement(fish4);
 }
 
 startElement.addEventListener("click", clickStart, false)
@@ -150,9 +163,9 @@ setInterval(() => {
 
 setInterval(() => {
     if (winner) {
-        cancelAnimationFrame(movingFish1.id);
-        cancelAnimationFrame(movingFish2.id);
-        cancelAnimationFrame(movingFish3.id);
-        cancelAnimationFrame(movingFish4.id);  
+        clearInterval(movingFish1);
+        clearInterval(movingFish2);
+        clearInterval(movingFish3);
+        clearInterval(movingFish4);  
     }
 }, time);
