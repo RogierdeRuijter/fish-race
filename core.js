@@ -139,6 +139,7 @@ var count = 11;
 const counterElement1 = document.getElementById('count-element1');
 const counterElement2 = document.getElementById('count-element2');
 const counterElement3 = document.getElementById('count-element3');
+const counterGo = document.getElementById('count-go');
 
 const hideWhoWin = () => {
     whoWinContainer.style.display = 'none';
@@ -169,9 +170,10 @@ setInterval(() => {
         counterElement2.style.display = 'none';
         counterElement1.style.display = 'block';
     } else if ( count == 2 ) {
-        // counterElement.src="./assets/countfish/fish0.png"
+        counterElement1.style.display = 'none';
+        counterGo.style.display = 'block';
     } else if ( count == 1 ) {
-        counterElement1.style.display="none"
+        counterGo.style.display = "none"
         clickStart()
     }
     count-=1;
