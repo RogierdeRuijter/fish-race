@@ -110,14 +110,14 @@ const createFishMovement = (fishElement) => {
     }, time);
 }
 
-const startElement = document.getElementById('start-button')
+// const startElement = document.getElementById('start-button')
 
-const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
+// const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
 
-const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
+// const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
 
-startElement.addEventListener("mouseenter", startHover, false)
-startElement.addEventListener("mouseleave", stopHover, false)
+// startElement.addEventListener("mouseenter", startHover, false)
+// startElement.addEventListener("mouseleave", stopHover, false)
 
 let movingFish1;
 let movingFish2;
@@ -132,7 +132,7 @@ const clickStart = () => {
     movingFish4 = createFishMovement(fish4);
 }
 
-startElement.addEventListener("click", clickStart, false)
+// startElement.addEventListener("click", clickStart, false)
 
 // Countdown at visit of the webpage
 var count = 11;
