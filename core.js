@@ -123,7 +123,6 @@ let movingFish3;
 let movingFish4;
 
 const startRace = () => {
-    startElement.style.display = "none"
     movingFish1 = createFishMovement(fish1);
     movingFish2 = createFishMovement(fish2);
     movingFish3 = createFishMovement(fish3);
