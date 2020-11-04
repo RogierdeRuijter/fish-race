@@ -2,15 +2,17 @@
 
 const finishLineWidth = 25;
 
-var contentContainer = document.getElementById("content-container");
+const contentContainer = document.getElementById("content-container");
 
-var fish1 = document.getElementById("fish1");
-var fish2 = document.getElementById("fish2");
-var fish3 = document.getElementById("fish3");
-var fish4 = document.getElementById("fish4");
+const whoWinContainer = document.getElementById("who-win-container");
 
-var water = document.getElementById("water");
-var finish = document.getElementById("finish");
+const fish1 = document.getElementById("fish1");
+const fish2 = document.getElementById("fish2");
+const fish3 = document.getElementById("fish3");
+const fish4 = document.getElementById("fish4");
+
+const water = document.getElementById("water");
+const finish = document.getElementById("finish");
 
 const widthContentContainer = 825;
 const heightContentContainer = 645;
@@ -95,6 +97,8 @@ const createFishMovement = (fishElement) => {
                 winnerElement.style.display = 'inline-block';
             }
             fishElement.style.left = position.toString() + 'px';
+
+            //Rotate fish
             if (animate >= animateThreshold) {
                 currentRotation *= -1;
                 fishElement.style.transform = 'rotate(' + currentRotation + 'deg)';
@@ -131,22 +135,30 @@ const clickStart = () => {
 startElement.addEventListener("click", clickStart, false)
 
 // Countdown at visit of the webpage
-var count = 8;
+var count = 11;
 const counterElement = document.getElementById('counter')
 
-// choosemsg
-const msgElement = document.getElementById('choosemsg')
+const hideWhoWin = () => {
+    whoWinContainer.style.display = 'none';
+};
+
+const showWhoWin = () => {
+    whoWinContainer.style.display = 'flex';
+};
 
 setInterval(() => {
-    if ( count == 9 ) {
-        
+    if (count === 10) {
+        showWhoWin();
+    } else if ( count == 9 ) {
+        hideWhoWin();
     } else if ( count == 8 ) {
-        msgElement.style.display="block"
+        showWhoWin();
     } else if ( count == 7 ) {
-        msgElement.style.display="none"
+        hideWhoWin();
     } else if ( count == 6 ) {
-        msgElement.style.display="block"
+        showWhoWin();
     } else if ( count == 5 ) {
+        hideWhoWin();
         counterElement.src="./assets/countfish/fish3.png"
     } else if ( count == 4 ) {
         counterElement.src="./assets/countfish/fish2.png"
