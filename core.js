@@ -1,5 +1,6 @@
 
 const whoWinContainer = document.getElementById("who-win-container");
+const whoWinElement = document.getElementById("who-win-element");
 
 const fish1 = document.getElementById("fish1");
 const fish2 = document.getElementById("fish2");
@@ -94,11 +95,13 @@ const counterElement3 = document.getElementById('count-element3');
 const counterGo = document.getElementById('count-go');
 
 const hideWhoWin = () => {
-    whoWinContainer.style.display = 'none';
+    whoWinElement.style.display = 'none';
+    // whoWinContainer.style.display = 'none';
 };
 
 const showWhoWin = () => {
-    whoWinContainer.style.display = 'flex';
+    whoWinElement.style.display = 'block';
+    // whoWinContainer.style.display = 'flex';
 };
 
 const start = () => {
