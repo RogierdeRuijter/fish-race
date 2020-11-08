@@ -16,7 +16,7 @@ let finishLine = 0;
 
 const startWater = 0;
 
-var winner;
+let winner;
 
 const time = 20;
 const changeToMoveForward = 55;
@@ -63,16 +63,6 @@ const createFishMovement = (fishElement) => {
 
     }, time);
 }
-
-// const startElement = document.getElementById('start-button')
-
-// const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
-
-// const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
-
-// startElement.addEventListener("mouseenter", startHover, false)
-// startElement.addEventListener("mouseleave", stopHover, false)
-
 let movingFish1;
 let movingFish2;
 let movingFish3;
@@ -85,8 +75,6 @@ const startRace = () => {
     movingFish4 = createFishMovement(fish4);
 }
 
-// startElement.addEventListener("click", clickStart, false)
-
 // Countdown at visit of the webpage
 var count = 11;
 const counterElement1 = document.getElementById('count-element1');
@@ -96,12 +84,10 @@ const counterGo = document.getElementById('count-go');
 
 const hideWhoWin = () => {
     whoWinElement.style.display = 'none';
-    // whoWinContainer.style.display = 'none';
 };
 
 const showWhoWin = () => {
     whoWinElement.style.display = 'block';
-    // whoWinContainer.style.display = 'flex';
 };
 
 const start = () => {
