@@ -1,6 +1,6 @@
-const finishLineWidth = 25;
 
 const whoWinContainer = document.getElementById("who-win-container");
+const whoWinElement = document.getElementById("who-win-element");
 
 const fish1 = document.getElementById("fish1");
 const fish2 = document.getElementById("fish2");
@@ -12,32 +12,11 @@ const finish = document.getElementById("finish");
 
 const widthFish = fish1.offsetWidth;
 
-function getOffset( el ) {
-    var _x = 0;
-    var _y = 0;
-    while( el && !isNaN( el.offsetLeft ) && !isNaN( el.offsetTop ) ) {
-        _x += el.offsetLeft - el.scrollLeft;
-        _y += el.offsetTop - el.scrollTop;
-        el = el.offsetParent;
-    }
-    return { top: _y, left: _x };
-}
-var finishLine = 0;
-
-const calculateFinishLinePosition = () => {
-    finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
-}
-
-window.addEventListener('resize', () => {
-    resizeContentContainer();
-    calculateFinishLinePosition();
-}, true);
-
-calculateFinishLinePosition();
+let finishLine = 0;
 
 const startWater = 0;
 
-var winner;
+let winner;
 
 const time = 20;
 const changeToMoveForward = 55;
@@ -84,16 +63,6 @@ const createFishMovement = (fishElement) => {
 
     }, time);
 }
-
-// const startElement = document.getElementById('start-button')
-
-// const startHover = () => startElement.src = "./assets/startbutton/start_button_hover.png"
-
-// const stopHover = () => startElement.src ="./assets/startbutton/start_button_null.png"
-
-// startElement.addEventListener("mouseenter", startHover, false)
-// startElement.addEventListener("mouseleave", stopHover, false)
-
 let movingFish1;
 let movingFish2;
 let movingFish3;
@@ -106,8 +75,6 @@ const startRace = () => {
     movingFish4 = createFishMovement(fish4);
 }
 
-// startElement.addEventListener("click", clickStart, false)
-
 // Countdown at visit of the webpage
 var count = 11;
 const counterElement1 = document.getElementById('count-element1');
@@ -116,11 +83,11 @@ const counterElement3 = document.getElementById('count-element3');
 const counterGo = document.getElementById('count-go');
 
 const hideWhoWin = () => {
-    whoWinContainer.style.display = 'none';
+    whoWinElement.style.display = 'none';
 };
 
 const showWhoWin = () => {
-    whoWinContainer.style.display = 'flex';
+    whoWinElement.style.display = 'block';
 };
 
 const start = () => {
@@ -156,12 +123,3 @@ const start = () => {
 }
 
 start();
-
-setInterval(() => {
-    if (winner) {
-        clearInterval(movingFish1);
-        clearInterval(movingFish2);
-        clearInterval(movingFish3);
-        clearInterval(movingFish4);  
-    }
-}, time);

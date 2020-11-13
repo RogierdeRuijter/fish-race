@@ -3,6 +3,8 @@ const contentContainer = document.getElementById("content-container");
 const widthContentContainer = 825;
 const heightContentContainer = 645;
 
+const finishLineWidth = 25;
+
 const resizeContentContainer = () => {
     const screenWidth = Math.min(window.innerWidth, window.outerWidth);
     const screenHeight = Math.min(window.innerHeight, window.outerHeight);
@@ -20,3 +22,14 @@ const resizeContentContainer = () => {
 }
 
 resizeContentContainer();
+
+const calculateFinishLinePosition = () => {
+    finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
+}
+
+window.addEventListener('resize', () => {
+    resizeContentContainer();
+    calculateFinishLinePosition();
+}, true);
+
+calculateFinishLinePosition();
