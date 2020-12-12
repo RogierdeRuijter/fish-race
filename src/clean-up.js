@@ -1,3 +1,5 @@
+// TODO: encapsulate this script into a function
+
 setInterval(() => {
     if (winner) {
         clearInterval(movingFish1);

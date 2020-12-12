@@ -1,3 +1,5 @@
+// TODO: encapsulate this script into a function
+
 function getOffset( el ) {
     var _x = 0;
     var _y = 0;

@@ -1,3 +1,5 @@
+// TODO: encapsulate this script into a function
+
 const contentContainer = document.getElementById("content-container");
 
 const widthContentContainer = 825;
