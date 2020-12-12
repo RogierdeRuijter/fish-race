@@ -24,7 +24,6 @@ const maxAmountOfForwardMovement = 10;
 
 const createFishMovement = (fishElement) => {
     var position = startWater;
-    let currentRotation = 5;
 
      return setInterval(() => {
         requestAnimationFrame(() => {
