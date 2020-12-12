@@ -7,9 +7,6 @@ const core = () => {
     const fish3 = document.getElementById("fish3");
     const fish4 = document.getElementById("fish4");
 
-    const water = document.getElementById("water");
-    const finish = document.getElementById("finish");
-
     const widthFish = fish1.offsetWidth;
 
     const startWater = 0;
