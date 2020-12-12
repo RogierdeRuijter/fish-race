@@ -1,6 +1,7 @@
 const setScreenSizeListener = () => {
     const contentContainer = document.getElementById("content-container");
-
+    const finishElement = document.getElementById("finish");
+    
     const widthContentContainer = 825;
     const heightContentContainer = 645;
 
@@ -25,7 +26,7 @@ const setScreenSizeListener = () => {
     resizeContentContainer();
 
     const calculateFinishLinePosition = () => {
-        finishLine = getOffset(document.getElementById("finish")).left + finishLineWidth + 5;
+        finishLine = getOffset(finishElement).left + finishLineWidth + 5;
     }
 
     window.addEventListener('resize', () => {
