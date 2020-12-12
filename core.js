@@ -65,7 +65,7 @@ const startRace = () => {
 }
 
 // Countdown at visit of the webpage
-var count = 11;
+var count = 6;
 const counterElement1 = document.getElementById('count-element1');
 const counterElement2 = document.getElementById('count-element2');
 const counterElement3 = document.getElementById('count-element3');
