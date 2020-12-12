@@ -21,11 +21,9 @@ let winner;
 const time = 20;
 const changeToMoveForward = 55;
 const maxAmountOfForwardMovement = 10;
-const animateThreshold = 30;
 
 const createFishMovement = (fishElement) => {
     var position = startWater;
-    let animate = 0;
     let currentRotation = 5;
 
      return setInterval(() => {
@@ -51,14 +49,6 @@ const createFishMovement = (fishElement) => {
                 winnerElement.style.display = 'inline-block';
             }
             fishElement.style.left = position.toString() + 'px';
-
-            //Rotate fish
-            if (animate >= animateThreshold) {
-                currentRotation *= -1;
-                fishElement.style.transform = 'rotate(' + currentRotation + 'deg)';
-                animate = 0;
-            }
-            animate += 1;
         });
 
     }, time);
