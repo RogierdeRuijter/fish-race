@@ -26,16 +26,6 @@
   justify-content: center;
 }
 
-#who-win-container {
-  height: 70px;
-  position: absolute;
-  /* top: 5%; */
-}
-
-#who-win-element {
-  display: none;
-}
-
 #race-container {
   position: relative;
   display: flex;

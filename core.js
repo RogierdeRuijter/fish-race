@@ -1,7 +1,3 @@
-
-const whoWinContainer = document.getElementById("who-win-container");
-const whoWinElement = document.getElementById("who-win-element");
-
 const fish1 = document.getElementById("fish1");
 const fish2 = document.getElementById("fish2");
 const fish3 = document.getElementById("fish3");
@@ -71,28 +67,9 @@ const counterElement2 = document.getElementById('count-element2');
 const counterElement3 = document.getElementById('count-element3');
 const counterGo = document.getElementById('count-go');
 
-const hideWhoWin = () => {
-    whoWinElement.style.display = 'none';
-};
-
-const showWhoWin = () => {
-    whoWinElement.style.display = 'block';
-};
-
 const start = () => {
     setInterval(() => {
-        if (count === 10) {
-            showWhoWin();
-        } else if ( count == 9 ) {
-            hideWhoWin();
-        } else if ( count == 8 ) {
-            showWhoWin();
-        } else if ( count == 7 ) {
-            hideWhoWin();
-        } else if ( count == 6 ) {
-            showWhoWin();
-        } else if ( count == 5 ) {
-            hideWhoWin();
+        if ( count == 5 ) {
             counterElement3.style.display = 'block';
         } else if ( count == 4 ) {
             counterElement3.style.display = 'none';
