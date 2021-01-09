@@ -1,7 +1,7 @@
-#header {
+.flags-container {
   width: 886px;
   display: flex;
-  justify-content: space-between;
+  justify-content: end;
   margin-top: 25px;
   margin-bottom: 25px;
 } 
