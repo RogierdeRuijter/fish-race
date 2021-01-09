@@ -131,7 +131,7 @@
   left: 35%;
   width: 28%;
 }
-/* TODO: restart button
-#restart-button {
-   
-} */
+
+.flags {
+  height: 100%; 
+}
