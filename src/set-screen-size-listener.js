@@ -2,8 +2,8 @@ const setScreenSizeListener = () => {
     const contentContainer = document.getElementById("content-container");
     const finishElement = document.getElementById("finish");
     
-    const widthContentContainer = 825;
-    const heightContentContainer = 645;
+    const widthContentContainer = 925;
+    const heightContentContainer = 745;
 
     const finishLineWidth = 25;
 
@@ -11,16 +11,23 @@ const setScreenSizeListener = () => {
         const screenWidth = Math.min(window.innerWidth, window.outerWidth);
         const screenHeight = Math.min(window.innerHeight, window.outerHeight);
 
-        if (screenWidth < widthContentContainer) {
+        // if (screenWidth < widthContentContainer) {
         scale = Math.min(
             screenWidth / widthContentContainer,    
             screenHeight / heightContentContainer
-        ) * 0.8;
+        ) * 0.95;
 
-        contentContainer.style.transform = "translate(0%, -" + 10/scale + "%) " + "scale(" + scale + ")";
-        } else {
-        contentContainer.style.transform = null;
+        let translateScale = 10/scale;
+        console.log(translateScale);
+        if (translateScale < 12) {
+            translateScale = 0;
         }
+        
+
+        contentContainer.style.transform = "translate(0%, -" + translateScale + "%) " +"scale(" + scale + ")";
+        // } else {
+        // contentContainer.style.transform = null;
+        // }
     }
 
     resizeContentContainer();
