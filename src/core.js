@@ -8,7 +8,7 @@ const core = () => {
 
   const time = 20;
   const changeToMoveForward = 55;
-  const maxAmountOfForwardMovement = 1.5;
+  const maxAmountOfForwardMovement = 2;
 
   let winner;
 
