@@ -16,7 +16,6 @@
 }
 
 #water-img {
-  max-height: 70vh;
   width: 100%;
 }
 .image {
@@ -78,7 +77,6 @@ main {
 }
 
 #finish {
-  max-height: 70vh;
   width: 100%;
 }
 
