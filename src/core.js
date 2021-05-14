@@ -17,7 +17,9 @@ const core = () => {
 
     return setInterval(() => {
       requestAnimationFrame(() => {
-        const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
+        const movement = Math.floor(
+          Math.random() * maxAmountOfForwardMovement,
+        );
 
         if (Math.floor(Math.random() * 100) < changeToMoveForward) {
           position += movement;
