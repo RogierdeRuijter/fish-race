@@ -51,7 +51,6 @@ main {
 
 .fish {
   display: inline-block;
-
   position: absolute;
   transition: all 0.6s, left 0.05s;
   left: 0;
