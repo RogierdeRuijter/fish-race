@@ -10,16 +10,28 @@ const core = () => {
   const changeToMoveForward = 55;
   const maxAmountOfForwardMovement = 2;
 
+  let fishAnimationFrames = {
+    fish1: undefined,
+    fish2: undefined,
+    fish3: undefined,
+    fish4: undefined,
+  };
+
   let winner;
 
   const createFishMovement = (fishElement) => {
     var position = startWater;
 
-    return setInterval(() => {
-      requestAnimationFrame(() => {
-        const movement = Math.floor(
-          Math.random() * maxAmountOfForwardMovement,
-        );
+    let startTime;
+
+    const move = (timestamp) => {
+      if (startTime === undefined) {
+        startTime = timestamp;
+      }
+
+      const elapsed = timestamp - startTime;
+      if (elapsed >= time) {
+        const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
 
         if (Math.floor(Math.random() * 100) < changeToMoveForward) {
           position += movement;
@@ -35,19 +47,21 @@ const core = () => {
           document.getElementById(id).style.display = "inline-block";
         }
         fishElement.style.left = position.toString() + "%";
-      });
-    }, time);
+
+        startTime = timestamp;
+      }
+
+      fishAnimationFrames[fish1.id] = requestAnimationFrame(move);
+    };
+
+    requestAnimationFrame(move);
   };
-  let movingFish1;
-  let movingFish2;
-  let movingFish3;
-  let movingFish4;
 
   const startRace = () => {
-    movingFish1 = createFishMovement(fish1);
-    movingFish2 = createFishMovement(fish2);
-    movingFish3 = createFishMovement(fish3);
-    movingFish4 = createFishMovement(fish4);
+    createFishMovement(fish1);
+    createFishMovement(fish2);
+    createFishMovement(fish3);
+    createFishMovement(fish4);
   };
 
   // Countdown at visit of the webpage
@@ -82,10 +96,10 @@ const core = () => {
 
   setInterval(() => {
     if (winner) {
-      clearInterval(movingFish1);
-      clearInterval(movingFish2);
-      clearInterval(movingFish3);
-      clearInterval(movingFish4);
+      cancelAnimationFrame(fishAnimationFrames['fish1']);
+      cancelAnimationFrame(fishAnimationFrames['fish2']);
+      cancelAnimationFrame(fishAnimationFrames['fish3']);
+      cancelAnimationFrame(fishAnimationFrames['fish4']);
     }
   }, time);
 };
