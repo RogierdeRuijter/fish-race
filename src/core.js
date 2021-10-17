@@ -65,41 +65,51 @@ const core = () => {
   };
 
   // Countdown at visit of the webpage
-  var count = 6;
   const counterElement1 = document.getElementById("count-element1");
   const counterElement2 = document.getElementById("count-element2");
   const counterElement3 = document.getElementById("count-element3");
   const counterGo = document.getElementById("count-go");
 
   const start = () => {
-    setInterval(() => {
-      if (count == 5) {
+    let countDownAnimationFrame;
+    let gameStart = false;
+
+    const countDown = (timestamp) => {
+      if (timestamp > 1000 && timestamp < 2000) {
         counterElement3.style.display = "block";
-      } else if (count == 4) {
+      } else if (timestamp > 2000 && timestamp < 3000) {
         counterElement3.style.display = "none";
         counterElement2.style.display = "block";
-      } else if (count == 3) {
+      } else if (timestamp > 3000 && timestamp < 4000) {
         counterElement2.style.display = "none";
         counterElement1.style.display = "block";
-      } else if (count == 2) {
+      } else if (timestamp > 4000 && timestamp < 5000) {
         counterElement1.style.display = "none";
         counterGo.style.display = "block";
-      } else if (count == 1) {
+      } else if (timestamp > 5000 && !gameStart) {
         counterGo.style.display = "none";
         startRace();
+        gameStart = true;
       }
-      count -= 1;
-    }, 1000);
+
+      countDownAnimationFrame = requestAnimationFrame(countDown);
+
+      if (gameStart) {
+        cancelAnimationFrame(countDownAnimationFrame);
+      }
+    };
+
+    requestAnimationFrame(countDown);
   };
 
   start();
 
   setInterval(() => {
     if (winner) {
-      cancelAnimationFrame(fishAnimationFrames['fish1']);
-      cancelAnimationFrame(fishAnimationFrames['fish2']);
-      cancelAnimationFrame(fishAnimationFrames['fish3']);
-      cancelAnimationFrame(fishAnimationFrames['fish4']);
+      cancelAnimationFrame(fishAnimationFrames["fish1"]);
+      cancelAnimationFrame(fishAnimationFrames["fish2"]);
+      cancelAnimationFrame(fishAnimationFrames["fish3"]);
+      cancelAnimationFrame(fishAnimationFrames["fish4"]);
     }
   }, time);
 };
