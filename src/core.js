@@ -73,23 +73,41 @@ const core = () => {
   const start = () => {
     let countDownAnimationFrame;
     let gameStart = false;
+    let startTime;
+
+    let step = 1;
 
     const countDown = (timestamp) => {
-      if (timestamp > 1000 && timestamp < 2000) {
-        counterElement3.style.display = "block";
-      } else if (timestamp > 2000 && timestamp < 3000) {
-        counterElement3.style.display = "none";
-        counterElement2.style.display = "block";
-      } else if (timestamp > 3000 && timestamp < 4000) {
-        counterElement2.style.display = "none";
-        counterElement1.style.display = "block";
-      } else if (timestamp > 4000 && timestamp < 5000) {
-        counterElement1.style.display = "none";
-        counterGo.style.display = "block";
-      } else if (timestamp > 5000 && !gameStart) {
-        counterGo.style.display = "none";
-        startRace();
-        gameStart = true;
+      if (startTime === undefined) {
+        startTime = timestamp;
+      }
+
+      const elapsed = timestamp - startTime;
+
+      if (elapsed >= 1000) {
+        switch (step) {
+          case 1:
+            counterElement3.style.display = "block";
+            break;
+          case 2:
+            counterElement3.style.display = "none";
+            counterElement2.style.display = "block";
+            break;
+          case 3:
+            counterElement2.style.display = "none";
+            counterElement1.style.display = "block";
+            break;
+          case 4:
+            counterElement1.style.display = "none";
+            counterGo.style.display = "block";
+            break;
+          case 5:
+            counterGo.style.display = "none";
+            startRace();
+            break;
+        }
+        step = step + 1;
+        startTime = undefined;
       }
 
       countDownAnimationFrame = requestAnimationFrame(countDown);
