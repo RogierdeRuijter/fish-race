@@ -74,7 +74,10 @@ const core = () => {
     let countDownAnimationFrame;
     let startTime;
 
-    let step = 1;
+    /* starts at 0 for the user to look at the water and finish line and grasp what it is */
+    let fishIntroStep = 0;
+
+    let countDownStep = 0;
 
     const countDown = (timestamp) => {
       if (startTime === undefined) {
@@ -83,8 +86,8 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
 
-      if (elapsed >= 1000) {
-        switch (step) {
+      if (elapsed >= 1500 && fishIntroStep < 5) {
+        switch (fishIntroStep) {
           case 1:
             fish1.style.opacity = 1;
             break;
@@ -97,33 +100,38 @@ const core = () => {
           case 4:
             fish4.style.opacity = 1;
             break;
-          case 5:
+        }
+        fishIntroStep = fishIntroStep + 1;
+        startTime = undefined;
+      } else if (elapsed >= 1000 && fishIntroStep === 5) {
+        switch (countDownStep) {
+          case 0:
             counterElement3.style.display = "block";
             break;
-          case 6:
+          case 1:
             counterElement3.style.display = "none";
             counterElement2.style.display = "block";
             break;
-          case 7:
+          case 2:
             counterElement2.style.display = "none";
             counterElement1.style.display = "block";
             break;
-          case 8:
+          case 3:
             counterElement1.style.display = "none";
             counterGo.style.display = "block";
             break;
-          case 9:
+          case 4:
             counterGo.style.display = "none";
             startRace();
             break;
         }
-        step = step + 1;
+        countDownStep = countDownStep + 1;
         startTime = undefined;
       }
 
       countDownAnimationFrame = requestAnimationFrame(countDown);
 
-      if (step === 10) {
+      if (fishIntroStep === 5 && countDownStep === 5) {
         cancelAnimationFrame(countDownAnimationFrame);
       }
     };
