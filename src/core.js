@@ -6,7 +6,7 @@ const core = () => {
 
   const startWater = 0;
 
-  const time = 20;
+  const time = 17;
   const changeToMoveForward = 55;
   const maxAmountOfForwardMovement = 2;
 
