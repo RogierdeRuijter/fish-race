@@ -72,7 +72,6 @@ const core = () => {
 
   const start = () => {
     let countDownAnimationFrame;
-    let gameStart = false;
     let startTime;
 
     let step = 1;
@@ -87,21 +86,33 @@ const core = () => {
       if (elapsed >= 1000) {
         switch (step) {
           case 1:
-            counterElement3.style.display = "block";
+            fish1.style.opacity = 1;
             break;
           case 2:
+            fish2.style.opacity = 1;
+            break;
+          case 3:
+            fish3.style.opacity = 1;
+            break;
+          case 4:
+            fish4.style.opacity = 1;
+            break;
+          case 5:
+            counterElement3.style.display = "block";
+            break;
+          case 6:
             counterElement3.style.display = "none";
             counterElement2.style.display = "block";
             break;
-          case 3:
+          case 7:
             counterElement2.style.display = "none";
             counterElement1.style.display = "block";
             break;
-          case 4:
+          case 8:
             counterElement1.style.display = "none";
             counterGo.style.display = "block";
             break;
-          case 5:
+          case 9:
             counterGo.style.display = "none";
             startRace();
             break;
@@ -112,7 +123,7 @@ const core = () => {
 
       countDownAnimationFrame = requestAnimationFrame(countDown);
 
-      if (gameStart) {
+      if (step === 10) {
         cancelAnimationFrame(countDownAnimationFrame);
       }
     };
