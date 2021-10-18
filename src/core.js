@@ -1,4 +1,4 @@
-const core = () => {
+const core = (restart) => {
   const fish1 = document.getElementById("fish1");
   const fish2 = document.getElementById("fish2");
   const fish3 = document.getElementById("fish3");
@@ -51,7 +51,7 @@ const core = () => {
         startTime = timestamp;
       }
 
-      fishAnimationFrames[fish1.id] = requestAnimationFrame(move);
+      fishAnimationFrames[fishElement.id] = requestAnimationFrame(move);
     };
 
     requestAnimationFrame(move);
@@ -139,14 +139,26 @@ const core = () => {
     requestAnimationFrame(countDown);
   };
 
-  start();
+  if (restart) {
+    fish1.style.left = "0%";
+    fish2.style.left = "0%";
+    fish3.style.left = "0%";
+    fish4.style.left = "0%";
 
-  setInterval(() => {
+    setTimeout(() => {
+      startRace();
+    }, 1500);
+  } else {
+    start();
+  }
+
+  const winnerInterval = setInterval(() => {
     if (winner) {
       cancelAnimationFrame(fishAnimationFrames["fish1"]);
       cancelAnimationFrame(fishAnimationFrames["fish2"]);
       cancelAnimationFrame(fishAnimationFrames["fish3"]);
       cancelAnimationFrame(fishAnimationFrames["fish4"]);
+      clearInterval(winnerInterval);
     }
   }, time);
 };
