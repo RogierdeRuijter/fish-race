@@ -26,6 +26,7 @@
 
       gtag("config", "UA-175557590-1");
     </script>
+    <script async src="./src/show-finish-line.js"></script>
   </head>
   <body>
     <main>
@@ -53,7 +54,11 @@
             <img id="count-go" class="counter" src="assets/counters/go.png" />
           </div>
           <div id="water" class="image">
-            <img id="water-img" src="./assets/water/frame_1.png" />
+            <img
+              id="water-img"
+              src="./assets/water/frame_1.png"
+              onload="showFinishLine()"
+            />
             <span id="fish1" class="fish">
               <img id="image-fish1" src="./assets/fish1/frame_1.png" />
               <img id="crown-fish1" class="crown" src="./assets/crown.png" />
