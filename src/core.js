@@ -51,7 +51,7 @@ const core = () => {
         startTime = timestamp;
       }
 
-      fishAnimationFrames[fish1.id] = requestAnimationFrame(move);
+      fishAnimationFrames[fishElement.id] = requestAnimationFrame(move);
     };
 
     requestAnimationFrame(move);
@@ -141,12 +141,13 @@ const core = () => {
 
   start();
 
-  setInterval(() => {
+  const winnerInterval = setInterval(() => {
     if (winner) {
       cancelAnimationFrame(fishAnimationFrames["fish1"]);
       cancelAnimationFrame(fishAnimationFrames["fish2"]);
       cancelAnimationFrame(fishAnimationFrames["fish3"]);
       cancelAnimationFrame(fishAnimationFrames["fish4"]);
+      clearInterval(winnerInterval);
     }
   }, time);
 };
