@@ -7,7 +7,7 @@ const core = () => {
   const startWater = 0;
 
   const time = 17;
-  const changeToMoveForward = 55;
+  const changeToMoveForward = 62;
   const maxAmountOfForwardMovement = 2;
 
   let fishAnimationFrames = {
