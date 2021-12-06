@@ -81,10 +81,6 @@ main {
   top: 78%;
 }
 
-#finish {
-  opacity: 0;
-}
-
 #finish-img {
   max-height: 70vh;
   max-width: 100%;
