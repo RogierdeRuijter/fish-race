@@ -9,7 +9,6 @@
 
 .fish {
   display: inline-block;
-  opacity: 0;
   position: absolute;
   /* How the transition left and the time to move work together is magic to me right now
    * TODO: figure out how those 2 properties relate
@@ -71,12 +70,10 @@
 
 #start-button {
   position: absolute;
-  display: none;
   top: 45.6%;
 }
 
 .counter {
-  display: none;
   position: absolute;
   width: 26%;
 }

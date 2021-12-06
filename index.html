@@ -9,9 +9,6 @@
       content="width=device-width, height=device-height, initial-scale=1"
     />
     <link rel="icon" type="image/png" href="./favicon.svg" />
-
-    <link rel="stylesheet" async type="text/css" href="src/core.css" />
-    <link rel="stylesheet" async type="text/css" href="src/reset.css" />
     <style>
       .flags-container {
         width: 100%;
@@ -55,6 +52,15 @@
       }
       .flags {
         width: 12%;
+      }
+      .fish {
+        opacity: 0;
+      }
+      #start-button {
+        display: none;
+      }
+      .counter {
+        display: none;
       }
     </style>
     <script
@@ -129,5 +135,7 @@
       </div>
     </main>
     <script defer src="src/core.js" onload="core();"></script>
+    <link rel="stylesheet" async type="text/css" href="src/core.css" />
+    <link rel="stylesheet" async type="text/css" href="src/reset.css" />
   </body>
 </html>
