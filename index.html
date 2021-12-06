@@ -10,9 +10,60 @@
     />
     <link rel="icon" type="image/png" href="./favicon.svg" />
 
-    <link rel="stylesheet" type="text/css" href="src/core.css" />
-    <link rel="stylesheet" type="text/css" href="src/reset.css" />
+    <link rel="stylesheet" async type="text/css" href="src/core.css" />
+    <link rel="stylesheet" async type="text/css" href="src/reset.css" />
+    <style>
+      .flags-container {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
 
+        margin-top: 2%;
+        margin-bottom: 2%;
+      }
+
+      #water {
+        position: relative;
+        clip-path: inset(-100vw -100vw -100vw 0);
+
+        max-width: 100%;
+        max-height: 100%;
+      }
+
+      #water-img {
+        max-height: 70vh;
+        max-width: 100%;
+      }
+
+      .image {
+        background-repeat: no-repeat, repeat;
+      }
+
+      main {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+
+        margin-left: 5%;
+        margin-right: 5%;
+      }
+
+      #race-container {
+        position: relative;
+        display: flex;
+      }
+
+      #finish-img {
+        max-height: 70vh;
+        max-width: 100%;
+      }
+
+      .flags {
+        width: 12%;
+      }
+    </style>
     <script
       async
       src="https://www.googletagmanager.com/gtag/js?id=UA-175557590-1"
@@ -53,10 +104,7 @@
             <img id="count-go" class="counter" src="assets/counters/go.png" />
           </div>
           <div id="water" class="image">
-            <img
-              id="water-img"
-              src="./assets/water/frame_1.png"
-            />
+            <img id="water-img" src="./assets/water/frame_1.png" />
             <span id="fish1" class="fish">
               <img id="image-fish1" src="./assets/fish1/frame_1.png" />
               <img id="crown-fish1" class="crown" src="./assets/crown.png" />
