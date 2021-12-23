@@ -150,8 +150,9 @@ const core = () => {
       cancelAnimationFrame(fishAnimationFrames["fish3"]);
       cancelAnimationFrame(fishAnimationFrames["fish4"]);
       cancelAnimationFrame(winnerAnimationFrame);
+    } else {
+      winnerAnimationFrame = requestAnimationFrame(checkForWinner);
     }
-    winnerAnimationFrame = requestAnimationFrame(checkForWinner);
   };
 
   requestAnimationFrame(checkForWinner);
