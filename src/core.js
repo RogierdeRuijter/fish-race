@@ -7,7 +7,7 @@ const core = () => {
   const startWater = 0;
 
   const time = 15;
-  const changeToMoveForward = 62;
+  const changeToMoveForward = 0.62;
   const maxAmountOfForwardMovement = 2;
 
   let fishAnimationFrames = {
@@ -31,9 +31,9 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
       if (elapsed >= time) {
-        const movement = Math.floor(Math.random() * maxAmountOfForwardMovement);
+        const movement = Math.random() > 0.5 ? 1 : 0;
 
-        if (Math.floor(Math.random() * 100) < changeToMoveForward) {
+        if (Math.random() < changeToMoveForward) {
           position += movement;
         } else {
           position -= movement;
