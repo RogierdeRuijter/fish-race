@@ -44,14 +44,20 @@ const core = () => {
 
           const id = "crown-" + winner;
 
+          cancelAnimationFrame(fishAnimationFrames["fish1"]);
+          cancelAnimationFrame(fishAnimationFrames["fish2"]);
+          cancelAnimationFrame(fishAnimationFrames["fish3"]);
+          cancelAnimationFrame(fishAnimationFrames["fish4"]);
+
           document.getElementById(id).style.display = "inline-block";
         }
         fishElement.style.left = position.toString() + "%";
 
         startTime = timestamp;
       }
-
-      fishAnimationFrames[fishElement.id] = requestAnimationFrame(move);
+      if (!winner) {
+        fishAnimationFrames[fishElement.id] = requestAnimationFrame(move);
+      }
     };
 
     requestAnimationFrame(move);
@@ -140,20 +146,4 @@ const core = () => {
   };
 
   start();
-
-  let winnerAnimationFrame;
-
-  const checkForWinner = () => {
-    if (winner) {
-      cancelAnimationFrame(fishAnimationFrames["fish1"]);
-      cancelAnimationFrame(fishAnimationFrames["fish2"]);
-      cancelAnimationFrame(fishAnimationFrames["fish3"]);
-      cancelAnimationFrame(fishAnimationFrames["fish4"]);
-      cancelAnimationFrame(winnerAnimationFrame);
-    } else {
-      winnerAnimationFrame = requestAnimationFrame(checkForWinner);
-    }
-  };
-
-  requestAnimationFrame(checkForWinner);
 };
