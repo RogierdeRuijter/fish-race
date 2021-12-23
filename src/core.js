@@ -141,13 +141,18 @@ const core = () => {
 
   start();
 
-  const winnerInterval = setInterval(() => {
+  let winnerAnimationFrame;
+
+  const checkForWinner = () => {
     if (winner) {
       cancelAnimationFrame(fishAnimationFrames["fish1"]);
       cancelAnimationFrame(fishAnimationFrames["fish2"]);
       cancelAnimationFrame(fishAnimationFrames["fish3"]);
       cancelAnimationFrame(fishAnimationFrames["fish4"]);
-      clearInterval(winnerInterval);
+      cancelAnimationFrame(winnerAnimationFrame);
     }
-  }, time);
+    winnerAnimationFrame = requestAnimationFrame(checkForWinner);
+  };
+
+  requestAnimationFrame(checkForWinner);
 };
