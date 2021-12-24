@@ -15,11 +15,19 @@ const core = () => {
 
   let winner;
 
+  let amountOfTimesRafRan = 0;
+
+  const positions = {
+    fish1: startWater,
+    fish2: startWater,
+    fish3: startWater,
+    fish4: startWater,
+  };
+
   const createFishMovement = () => {
     var position = startWater;
 
     let startTime;
-
     const move = (timestamp) => {
       if (startTime === undefined) {
         startTime = timestamp;
@@ -27,14 +35,20 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
       if (elapsed >= time) {
+        amountOfTimesRafRan += 1;
+
         fishes.forEach((fishElement) => {
           const movement = Math.random() > 0.5 ? 1 : 0;
 
           if (Math.random() < changeToMoveForward) {
-            position += movement;
+            positions[fishElement.id] += movement;
           } else {
-            position -= movement;
+            positions[fishElement.id] -= movement;
           }
+
+          fishElement.style.left = positions[fishElement.id].toString() + "%";
+
+          startTime = timestamp;
 
           if (fishElement.style.left === "85%") {
             winner = fishElement.id;
@@ -43,16 +57,8 @@ const core = () => {
 
             cancelAnimationFrame(fishAnimationFrame);
 
-            // cancelAnimationFrame(fishAnimationFrames["fish1"]);
-            // cancelAnimationFrame(fishAnimationFrames["fish2"]);
-            // cancelAnimationFrame(fishAnimationFrames["fish3"]);
-            // cancelAnimationFrame(fishAnimationFrames["fish4"]);
-
             document.getElementById(id).style.display = "inline-block";
           }
-          fishElement.style.left = position.toString() + "%";
-
-          startTime = timestamp;
         });
       }
       if (!winner) {
