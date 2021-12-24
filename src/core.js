@@ -39,6 +39,9 @@ const core = () => {
           position -= movement;
         }
 
+        fishElement.style.left = position.toString() + "%";
+        startTime = timestamp;
+
         if (fishElement.style.left === "85%") {
           winner = fishElement.id;
 
@@ -51,9 +54,6 @@ const core = () => {
 
           document.getElementById(id).style.display = "inline-block";
         }
-        fishElement.style.left = position.toString() + "%";
-
-        startTime = timestamp;
       }
       if (!winner) {
         fishAnimationFrames[fishElement.id] = requestAnimationFrame(move);
