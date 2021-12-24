@@ -45,14 +45,13 @@ const core = () => {
         if (fishElement.style.left === "85%") {
           winner = fishElement.id;
 
-          const id = "crown-" + winner;
+          const crownId = "crown-" + winner;
+          document.getElementById(crownId).style.display = "inline-block";
 
           cancelAnimationFrame(fishAnimationFrames["fish1"]);
           cancelAnimationFrame(fishAnimationFrames["fish2"]);
           cancelAnimationFrame(fishAnimationFrames["fish3"]);
           cancelAnimationFrame(fishAnimationFrames["fish4"]);
-
-          document.getElementById(id).style.display = "inline-block";
         }
       }
       if (!winner) {
