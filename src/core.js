@@ -68,10 +68,6 @@ const core = () => {
 
   const startRace = () => {
     createFishMovement();
-    // createFishMovement(fish1);
-    // createFishMovement(fish2);
-    // createFishMovement(fish3);
-    // createFishMovement(fish4);
   };
 
   // Countdown at visit of the webpage
