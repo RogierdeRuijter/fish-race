@@ -1,3 +1,44 @@
+const calculatePath = (fishes) => {
+  const changeToMoveForward = 0.62;
+
+  const path = {
+    fish1: [],
+    fish2: [],
+    fish3: [],
+    fish4: [],
+  };
+
+  let whoIsTheWinner = "";
+
+  while (!whoIsTheWinner) {
+    fishes.forEach((fishElement) => {
+      let movement = Math.random() > 0.5 ? 1 : 0;
+
+      if (Math.random() > changeToMoveForward) {
+        movement *= -1;
+      }
+
+      path[fishElement.id].push(movement);
+
+      let sum = path[fishElement.id].reduce(function (a, b) {
+        return a + b;
+      }, 0);
+
+      if (sum === 85) {
+        whoIsTheWinner = fishElement.id;
+      }
+    });
+  }
+
+  const amountOfSteps = path["fish1"].length - 1;
+
+  return {
+    path,
+    whoIsTheWinner,
+    amountOfSteps,
+  };
+};
+
 const core = () => {
   const fish1 = document.getElementById("fish1");
   const fish2 = document.getElementById("fish2");
@@ -9,7 +50,6 @@ const core = () => {
   const startWater = 0;
 
   const time = 15;
-  const changeToMoveForward = 0.62;
 
   let fishAnimationFrame;
 
@@ -17,12 +57,16 @@ const core = () => {
 
   let amountOfTimesRafRan = 0;
 
+  const { path, whoIsTheWinner, amountOfSteps } = calculatePath(fishes);
+
   const positions = {
     fish1: startWater,
     fish2: startWater,
     fish3: startWater,
     fish4: startWater,
   };
+
+  let pathIndex = 0;
 
   const createFishMovement = () => {
     let startTime;
@@ -36,34 +80,11 @@ const core = () => {
 
       if (elapsed >= time) {
         fishes.forEach((fishElement) => {
-          const movement = Math.random() > 0.5 ? 1 : 0;
-
-          if (Math.random() < changeToMoveForward) {
-            positions[fishElement.id] += movement;
-          } else {
-            positions[fishElement.id] -= movement;
-          }
-
-<<<<<<< HEAD
-        fishElement.style.left = position.toString() + "%";
-        startTime = timestamp;
-
-        if (fishElement.style.left === "85%") {
-          winner = fishElement.id;
-
-          const crownId = "crown-" + winner;
-          document.getElementById(crownId).style.display = "inline-block";
-
-          cancelAnimationFrame(fishAnimationFrames["fish1"]);
-          cancelAnimationFrame(fishAnimationFrames["fish2"]);
-          cancelAnimationFrame(fishAnimationFrames["fish3"]);
-          cancelAnimationFrame(fishAnimationFrames["fish4"]);
-        }
-=======
+          positions[fishElement.id] += path[fishElement.id][pathIndex];
           fishElement.style.left = `${positions[fishElement.id]}%`;
 
-          if (fishElement.style.left === "85%") {
-            winner = fishElement.id;
+          if (amountOfSteps === pathIndex) {
+            winner = whoIsTheWinner;
 
             const id = "crown-" + winner;
 
@@ -73,7 +94,7 @@ const core = () => {
           }
         });
         startTime = timestamp;
->>>>>>> 84b8a90366d09d7679e7c767741ed1f63b5ced65
+        pathIndex += 1;
       }
       if (!winner) {
         fishAnimationFrame = requestAnimationFrame(move);
