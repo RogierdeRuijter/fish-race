@@ -44,22 +44,6 @@ const core = () => {
             positions[fishElement.id] -= movement;
           }
 
-<<<<<<< HEAD
-        fishElement.style.left = position.toString() + "%";
-        startTime = timestamp;
-
-        if (fishElement.style.left === "85%") {
-          winner = fishElement.id;
-
-          const crownId = "crown-" + winner;
-          document.getElementById(crownId).style.display = "inline-block";
-
-          cancelAnimationFrame(fishAnimationFrames["fish1"]);
-          cancelAnimationFrame(fishAnimationFrames["fish2"]);
-          cancelAnimationFrame(fishAnimationFrames["fish3"]);
-          cancelAnimationFrame(fishAnimationFrames["fish4"]);
-        }
-=======
           fishElement.style.left = `${positions[fishElement.id]}%`;
 
           if (fishElement.style.left === "85%") {
@@ -73,7 +57,6 @@ const core = () => {
           }
         });
         startTime = timestamp;
->>>>>>> 84b8a90366d09d7679e7c767741ed1f63b5ced65
       }
       if (!winner) {
         fishAnimationFrame = requestAnimationFrame(move);
