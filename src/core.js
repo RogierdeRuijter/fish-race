@@ -6,8 +6,6 @@ const core = () => {
 
   const fishes = [fish1, fish2, fish3, fish4];
 
-  const startWater = 0;
-
   const time = 15;
   const changeToMoveForward = 0.62;
 
@@ -15,13 +13,11 @@ const core = () => {
 
   let winner;
 
-  let amountOfTimesRafRan = 0;
-
   const positions = {
-    fish1: startWater,
-    fish2: startWater,
-    fish3: startWater,
-    fish4: startWater,
+    fish1: 0,
+    fish2: 0,
+    fish3: 0,
+    fish4: 0,
   };
 
   const createFishMovement = () => {
@@ -128,6 +124,7 @@ const core = () => {
             break;
           case 4:
             counterGo.style.display = "none";
+            document.getElementById("count-container").remove();
             startRace();
             break;
         }
