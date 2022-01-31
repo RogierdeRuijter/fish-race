@@ -63,6 +63,17 @@
       .counter {
         display: none;
       }
+      /* The fish class is critical CSS, because otherwise the fish are positioned elements and shift the layout when they are loaded. */
+      .fish {
+        display: inline-block;
+        position: absolute;
+        /* How the transition left and the time to move work together is magic to me right now
+        * TODO: figure out how those 2 properties relate
+        */
+        transition: all 0.6s, left 0.05s;
+        left: 0;
+        width: 20%;
+      }
     </style>
     <script
       async
