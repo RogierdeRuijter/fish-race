@@ -70,9 +70,12 @@
         /* How the transition left and the time to move work together is magic to me right now
         * TODO: figure out how those 2 properties relate
         */
-        transition: opacity 1s ease-out, left 0.05s;
-        left: 0;
+        transition: left 0.05s;
         width: 20%;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     </style>
     <script
@@ -88,6 +91,10 @@
 
       gtag("config", "UA-175557590-1");
     </script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    ></script>
   </head>
   <body style="margin: 0">
     <main>
@@ -177,8 +184,9 @@
       // This code monitors the page for changes in size. When change is detected, it sends send the latest size to the parent page using postMessage
 
       // determine height of content on this page
+      const contentContainer = document.getElementById("content-container");
+
       function getMyHeight() {
-        const contentContainer = document.getElementById("content-container");
         return contentContainer.scrollHeight;
       }
 

@@ -11,22 +11,6 @@
   width: 100%;
 }
 
-#fish1 {
-  top: 3%;
-}
-
-#fish2 {
-  top: 29%;
-}
-
-#fish3 {
-  top: 54%;
-}
-
-#fish4 {
-  top: 78%;
-}
-
 .crown {
   position: absolute;
   display: none;

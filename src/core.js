@@ -80,7 +80,7 @@ const core = () => {
     let fishIntroStep = 0;
 
     let countDownStep = 0;
-
+    let elapseTime = 2000;
     const countDown = (timestamp) => {
       if (startTime === undefined) {
         startTime = timestamp;
@@ -88,27 +88,30 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
 
-      if (elapsed >= 1500 && fishIntroStep < 5) {
+      if (elapsed >= elapseTime && fishIntroStep < 5) {
         switch (fishIntroStep) {
           case 1:
-            fish1.style.opacity = 1;
+            introductionTimeline("#fish1", "3%");
+            elapseTime = 4200;
             break;
           case 2:
-            fish2.style.opacity = 1;
+            introductionTimeline("#fish2", "29%");
             break;
           case 3:
-            fish3.style.opacity = 1;
+            introductionTimeline("#fish3", "54%");
             break;
           case 4:
-            fish4.style.opacity = 1;
+            introductionTimeline("#fish4", "78%");
+            elapseTime = 4200 + 1000;
             break;
         }
         fishIntroStep = fishIntroStep + 1;
         startTime = undefined;
-      } else if (elapsed >= 1000 && fishIntroStep === 5) {
+      } else if (elapsed >= elapseTime && fishIntroStep === 5) {
         switch (countDownStep) {
           case 0:
             counterElement3.style.display = "block";
+            elapseTime = 1000;
             break;
           case 1:
             counterElement3.style.display = "none";
@@ -143,4 +146,31 @@ const core = () => {
   };
 
   start();
+
+  const introductionTimeline = (fishId, topValue) => {
+    gsap
+      .timeline()
+      .to(fishId, {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      })
+      .to(fishId, {
+        top: topValue,
+        transform: "translate(-50%, 0%)",
+        ease: "power2.out",
+        duration: 1,
+      })
+      .to(fishId, {
+        left: "52%",
+        duration: 0.2,
+        ease: "expo.out",
+      })
+      .to(fishId, {
+        left: "0%",
+        transform: "translate(0%, 0%)",
+        ease: "bounce.out",
+        duration: 2,
+      });
+  };
 };
