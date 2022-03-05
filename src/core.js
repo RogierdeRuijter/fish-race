@@ -55,7 +55,7 @@ const core = () => {
         startTime = timestamp;
       }
       if (!winner) {
-        fishAnimationFrame = requestAnimationFrame(move);
+        // fishAnimationFrame = requestAnimationFrame(move);
       }
     };
 
@@ -88,19 +88,31 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
 
-      if (elapsed >= 1500 && fishIntroStep < 5) {
+      if (elapsed >= 2000 && fishIntroStep < 5) {
         switch (fishIntroStep) {
           case 1:
             fish1.style.opacity = 1;
+            setTimeout(() => {
+              fish1.classList.add("to-start");
+            }, 1000);
             break;
           case 2:
             fish2.style.opacity = 1;
+            setTimeout(() => {
+              fish2.classList.add("to-start");
+            }, 1000);
             break;
           case 3:
             fish3.style.opacity = 1;
+            setTimeout(() => {
+              fish3.classList.add("to-start");
+            }, 1000);
             break;
           case 4:
             fish4.style.opacity = 1;
+            setTimeout(() => {
+              fish4.classList.add("to-start");
+            }, 1000);
             break;
         }
         fishIntroStep = fishIntroStep + 1;

@@ -10,21 +10,33 @@
 .fish [id*="image-fish"] {
   width: 100%;
 }
-
-#fish1 {
+/* TODO: figure out why this isnt working */
+#fish1.to-start {
   top: 3%;
+  left: 0;
+  transform: translate(0%, 0%);
+  transition: all ease-out 1s;
 }
 
-#fish2 {
+#fish2.to-start {
   top: 29%;
+  left: 0;
+  transform: translate(0%, 0%);
+  transition: all ease-out 1s;
 }
 
-#fish3 {
+#fish3.to-start {
   top: 54%;
+  left: 0;
+  transform: translate(0%, 0%);
+  transition: all ease-out 1s;
 }
 
-#fish4 {
+#fish4.to-start {
   top: 78%;
+  left: 0;
+  transform: translate(0%, 0%);
+  transition: all ease-out 1s;
 }
 
 .crown {
