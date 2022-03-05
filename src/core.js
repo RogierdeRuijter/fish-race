@@ -55,7 +55,7 @@ const core = () => {
         startTime = timestamp;
       }
       if (!winner) {
-        // fishAnimationFrame = requestAnimationFrame(move);
+        fishAnimationFrame = requestAnimationFrame(move);
       }
     };
 
@@ -80,7 +80,7 @@ const core = () => {
     let fishIntroStep = 0;
 
     let countDownStep = 0;
-
+    let elapseTime = 2000;
     const countDown = (timestamp) => {
       if (startTime === undefined) {
         startTime = timestamp;
@@ -88,39 +88,127 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
 
-      if (elapsed >= 2000 && fishIntroStep < 5) {
+      if (elapsed >= elapseTime && fishIntroStep < 5) {
         switch (fishIntroStep) {
           case 1:
-            fish1.style.opacity = 1;
-            setTimeout(() => {
-              fish1.classList.add("to-start");
-            }, 1000);
+            gsap
+              .timeline()
+              .to("#fish1", {
+                opacity: 1,
+                duration: 1,
+                ease: "power1.out",
+              })
+              .to("#fish1", {
+                top: "3%",
+                transform: "translate(-50%, 0%)",
+                ease: "power2.out",
+                duration: 1,
+              })
+              .to("#fish1", {
+                left: "52%",
+                duration: 0.2,
+                ease: "expo.out",
+              })
+              .to("#fish1", {
+                left: "0%",
+                transform: "translate(0%, 0%)",
+                ease: "bounce.out",
+                duration: 2,
+              });
+            elapseTime = 4200;
             break;
           case 2:
-            fish2.style.opacity = 1;
-            setTimeout(() => {
-              fish2.classList.add("to-start");
-            }, 1000);
+            gsap
+              .timeline()
+              .to("#fish2", {
+                opacity: 1,
+                duration: 1,
+                ease: "power1.out",
+              })
+              .to("#fish2", {
+                top: "29%",
+                transform: "translate(-50%, 0%)",
+
+                ease: "power2.out",
+                duration: 1,
+              })
+              .to("#fish2", {
+                left: "52%",
+                duration: 0.2,
+                ease: "expo.out",
+              })
+              .to("#fish2", {
+                left: "0%",
+                transform: "translate(0%, 0%)",
+                ease: "bounce.out",
+                duration: 2,
+              });
+            elapseTime = 4200;
             break;
           case 3:
-            fish3.style.opacity = 1;
-            setTimeout(() => {
-              fish3.classList.add("to-start");
-            }, 1000);
+            gsap
+              .timeline()
+              .to("#fish3", {
+                opacity: 1,
+                duration: 1,
+                ease: "power1.out",
+              })
+              .to("#fish3", {
+                top: "54%",
+                transform: "translate(-50%, 0%)",
+
+                ease: "power2.out",
+                duration: 1,
+              })
+              .to("#fish3", {
+                left: "52%",
+                duration: 0.2,
+                ease: "expo.out",
+              })
+              .to("#fish3", {
+                left: "0%",
+                transform: "translate(0%, 0%)",
+                ease: "bounce.out",
+                duration: 2,
+              });
+            elapseTime = 4200;
+
             break;
           case 4:
-            fish4.style.opacity = 1;
-            setTimeout(() => {
-              fish4.classList.add("to-start");
-            }, 1000);
+            gsap
+              .timeline()
+              .to("#fish4", {
+                opacity: 1,
+                duration: 1,
+                ease: "power1.out",
+              })
+              .to("#fish4", {
+                top: "78%",
+                transform: "translate(-50%, 0%)",
+                ease: "power2.out",
+                duration: 1,
+              })
+              .to("#fish4", {
+                left: "52%",
+                duration: 0.2,
+                ease: "expo.out",
+              })
+              .to("#fish4", {
+                left: "0%",
+                transform: "translate(0%, 0%)",
+                ease: "bounce.out",
+                duration: 2,
+              });
+            elapseTime = 4200 + 1000;
             break;
         }
         fishIntroStep = fishIntroStep + 1;
         startTime = undefined;
-      } else if (elapsed >= 1000 && fishIntroStep === 5) {
+      } else if (elapsed >= elapseTime && fishIntroStep === 5) {
         switch (countDownStep) {
           case 0:
             counterElement3.style.display = "block";
+            elapseTime = 1000;
             break;
           case 1:
             counterElement3.style.display = "none";
