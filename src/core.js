@@ -96,11 +96,9 @@ const core = () => {
             break;
           case 2:
             introductionTimeline("#fish2", "29%");
-            elapseTime = 4200;
             break;
           case 3:
             introductionTimeline("#fish3", "54%");
-            elapseTime = 4200;
             break;
           case 4:
             introductionTimeline("#fish4", "78%");
