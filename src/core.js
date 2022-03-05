@@ -47,8 +47,6 @@ const core = () => {
 
   const fishes = [fish1, fish2, fish3, fish4];
 
-  const startWater = 0;
-
   const time = 15;
 
   let fishAnimationFrame;
@@ -60,10 +58,10 @@ const core = () => {
   const { path, whoIsTheWinner, amountOfSteps } = calculatePath(fishes);
 
   const positions = {
-    fish1: startWater,
-    fish2: startWater,
-    fish3: startWater,
-    fish4: startWater,
+    fish1: 0,
+    fish2: 0,
+    fish3: 0,
+    fish4: 0,
   };
 
   let pathIndex = 0;
@@ -166,6 +164,7 @@ const core = () => {
             break;
           case 4:
             counterGo.style.display = "none";
+            document.getElementById("count-container").remove();
             startRace();
             break;
         }
