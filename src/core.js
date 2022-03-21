@@ -48,19 +48,20 @@ const core = () => {
             winner = fishElement.id;
 
             const id = "crown-" + winner;
-
-            cancelAnimationFrame(fishAnimationFrame);
-
             document.getElementById(id).style.display = "inline-block";
+            // TODO: use gsap
+            document.getElementById(id).style.opacity = 1;
 
+            // TODO: fix bug of random appearance the restart button
             document.getElementById("restart").style.visibility = "visible";
-
             gsap.to("#restart", {
               delay: 2,
               ease: "power4.out",
               opacity: 1,
               duration: 2,
             });
+
+            cancelAnimationFrame(fishAnimationFrame);
           }
         });
         startTime = timestamp;
@@ -192,6 +193,8 @@ const core = () => {
 
     gsap.to(`#crown-${winner}`, { opacity: 0, duration: 0.5 });
     setTimeout(() => {
+      document.getElementById("restart").style.visibility = "hidden";
+
       // TODO: use gsap for animation
       document.getElementById(`crown-${winner}`).style.opacity = 1;
       document.getElementById(`crown-${winner}`).style.display = "none";
