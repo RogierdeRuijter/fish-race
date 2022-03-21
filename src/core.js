@@ -58,7 +58,7 @@ const core = () => {
 
             document.getElementById("restart").style.visibility = "visible";
             gsap.to("#restart", {
-              delay: 2,
+              delay: 3,
               ease: "power4.out",
               opacity: 1,
               duration: 3,
