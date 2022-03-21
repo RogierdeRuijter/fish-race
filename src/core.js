@@ -49,16 +49,19 @@ const core = () => {
 
             const id = "crown-" + winner;
             document.getElementById(id).style.display = "inline-block";
-            // TODO: use gsap
-            document.getElementById(id).style.opacity = 1;
 
-            // TODO: fix bug of random appearance the restart button
+            gsap.to(`#${id}`, {
+              ease: "power1.out",
+              opacity: 1,
+              duration: 2,
+            });
+
             document.getElementById("restart").style.visibility = "visible";
             gsap.to("#restart", {
               delay: 2,
               ease: "power4.out",
               opacity: 1,
-              duration: 2,
+              duration: 3,
             });
 
             cancelAnimationFrame(fishAnimationFrame);
