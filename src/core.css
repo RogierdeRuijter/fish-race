@@ -13,6 +13,7 @@
 
 .crown {
   position: absolute;
+  opacity: 0;
   display: none;
   width: 15%;
 }

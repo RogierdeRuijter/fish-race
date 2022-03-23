@@ -1,4 +1,6 @@
 const core = () => {
+  const fishIds = ["fish1", "fish2", "fish3", "fish4"];
+
   const fish1 = document.getElementById("fish1");
   const fish2 = document.getElementById("fish2");
   const fish3 = document.getElementById("fish3");
@@ -46,10 +48,23 @@ const core = () => {
             winner = fishElement.id;
 
             const id = "crown-" + winner;
+            document.getElementById(id).style.display = "inline-block";
+
+            gsap.to(`#${id}`, {
+              ease: "power1.out",
+              opacity: 1,
+              duration: 2,
+            });
+
+            document.getElementById("restart").style.visibility = "visible";
+            gsap.to("#restart", {
+              delay: 3,
+              ease: "power4.out",
+              opacity: 1,
+              duration: 3,
+            });
 
             cancelAnimationFrame(fishAnimationFrame);
-
-            document.getElementById(id).style.display = "inline-block";
           }
         });
         startTime = timestamp;
@@ -91,17 +106,17 @@ const core = () => {
       if (elapsed >= elapseTime && fishIntroStep < 5) {
         switch (fishIntroStep) {
           case 1:
-            introductionTimeline("#fish1", "3%");
+            introductionTimeline("#fish1", "3%", "slow(0.7, 0.7, false)");
             elapseTime = 4200;
             break;
           case 2:
-            introductionTimeline("#fish2", "29%");
+            introductionTimeline("#fish2", "29%", "expo.out");
             break;
           case 3:
-            introductionTimeline("#fish3", "54%");
+            introductionTimeline("#fish3", "54%", "back.inOut(1)");
             break;
           case 4:
-            introductionTimeline("#fish4", "78%");
+            introductionTimeline("#fish4", "78%", "sine.out");
             elapseTime = 4200 + 1000;
             break;
         }
@@ -147,7 +162,7 @@ const core = () => {
 
   start();
 
-  const introductionTimeline = (fishId, topValue) => {
+  const introductionTimeline = (fishId, topValue, ease) => {
     gsap
       .timeline()
       .to(fishId, {
@@ -162,15 +177,48 @@ const core = () => {
         duration: 1,
       })
       .to(fishId, {
-        left: "52%",
-        duration: 0.2,
-        ease: "expo.out",
-      })
-      .to(fishId, {
         left: "0%",
         transform: "translate(0%, 0%)",
-        ease: "bounce.out",
+        ease: ease,
         duration: 2,
       });
+  };
+
+  document.getElementById("restart").addEventListener("click", () => {
+    gsap.to("#restart", {
+      opacity: 0,
+      ease: "power2.in",
+      duration: 0.3,
+    });
+    fishIds.forEach((fishId) => {
+      gsap.to(`#${fishId}`, { left: "0%", duration: 3, ease: "none" });
+    });
+
+    gsap.to(`#crown-${winner}`, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power1.in",
+    });
+    setTimeout(() => {
+      document.getElementById("restart").style.visibility = "hidden";
+      document.getElementById("restart").style.opacity = 0;
+
+      document.getElementById(`crown-${winner}`).style.opacity = 1;
+      document.getElementById(`crown-${winner}`).style.display = "none";
+    }, 300);
+
+    setTimeout(() => {
+      restart();
+    }, 4000);
+  });
+
+  const restart = () => {
+    fishIds.forEach((fishId) => {
+      positions[fishId] = 0;
+    });
+
+    winner = "";
+
+    startRace();
   };
 };
