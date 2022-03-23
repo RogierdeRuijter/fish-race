@@ -113,7 +113,7 @@ const core = () => {
             introductionTimeline("#fish2", "29%", "expo.out");
             break;
           case 3:
-            introductionTimeline("#fish3", "54%", "bounce.out");
+            introductionTimeline("#fish3", "54%", "back.inOut(1)");
             break;
           case 4:
             introductionTimeline("#fish4", "78%", "sine.out");
@@ -187,21 +187,26 @@ const core = () => {
   document.getElementById("restart").addEventListener("click", () => {
     gsap.to("#restart", {
       opacity: 0,
-      ease: "slow(0.7, 0.7, false)",
-      duration: 0.5,
+      ease: "power2.in",
+      duration: 0.3,
     });
     fishIds.forEach((fishId) => {
       gsap.to(`#${fishId}`, { left: "0%", duration: 3, ease: "none" });
     });
 
-    gsap.to(`#crown-${winner}`, { opacity: 0, duration: 0.5 });
+    gsap.to(`#crown-${winner}`, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power1.in",
+    });
     setTimeout(() => {
       document.getElementById("restart").style.visibility = "hidden";
+      document.getElementById("restart").style.opacity = 0;
 
       // TODO: use gsap for animation
       document.getElementById(`crown-${winner}`).style.opacity = 1;
       document.getElementById(`crown-${winner}`).style.display = "none";
-    }, 500);
+    }, 300);
 
     setTimeout(() => {
       restart();
