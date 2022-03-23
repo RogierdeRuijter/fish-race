@@ -27,7 +27,7 @@ iVBORw0KGgoAAAANSUhEUgAAAL0AAAC9CAYAAADm13wwAAAAAXNSR0IArs4c6QAAADhlWElmTU0AKgAA
 <rect height="41" width="133.418" x="27.9039" y="74.7549"/>
 </clipPath>
 <filter color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse" height="29.7422" id="Filter" width="124.723" x="32.7946" y="76.9385">
-<feGaussianBlur in="SourceGraphic" result="Blur" stdDeviation="0.05"/>
+<feGaussianBlur in="SourceGraphic" result="Blur" stdDeviation="0.00"/>
 </filter>
 </defs>
 <g id="Layer-1" vectornator:layerName="Layer 1">
