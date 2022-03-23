@@ -203,7 +203,6 @@ const core = () => {
       document.getElementById("restart").style.visibility = "hidden";
       document.getElementById("restart").style.opacity = 0;
 
-      // TODO: use gsap for animation
       document.getElementById(`crown-${winner}`).style.opacity = 1;
       document.getElementById(`crown-${winner}`).style.display = "none";
     }, 300);
