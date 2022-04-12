@@ -143,36 +143,22 @@ const core = () => {
   start();
 
   const introductionTimeline = (fishId, topValue, ease) => {
-    fishId.animate(
-      [
-        { opacity: 1 },
-        { top: topValue, offset: 0.25 },
-        { left: "0%", offset: 0.5 },
-      ],
-      {
-        duration: 4000,
-        fill: "forwards",
-      }
-    );
-    // gsap
-    //   .timeline()
-    //   .to(fishId, {
-    //     opacity: 1,
-    //     duration: 1,
-    //     ease: "power1.out",
-    //   })
-    //   .to(fishId, {
-    //     top: topValue,
-    //     transform: "translate(-50%, 0%)",
-    //     ease: "power2.out",
-    //     duration: 1,
-    //   })
-    //   .to(fishId, {
-    //     left: "0%",
-    //     transform: "translate(0%, 0%)",
-    //     ease: ease,
-    //     duration: 2,
-    //   });
+    fishId.animate([{ opacity: 1 }], {
+      duration: 1000,
+      fill: "forwards",
+    });
+
+    fishId.animate([{ top: topValue, transform: "translate(-50%, 0%)" }], {
+      duration: 1000,
+      delay: 1000,
+      fill: "forwards",
+    });
+
+    fishId.animate([{ left: "0%", transform: "translate(0%, 0%)" }], {
+      duration: 2000,
+      delay: 2000,
+      fill: "forwards",
+    });
   };
 
   restartButton.addEventListener("click", () => {
