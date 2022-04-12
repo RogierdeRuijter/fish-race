@@ -1,80 +1,90 @@
-const core = () => {
-  const fishIds = ["fish1", "fish2", "fish3", "fish4"];
+const calculatePath = (fishes) => {
+  const changeToMoveForward = 0.62;
 
+  const path = {
+    fish1: [],
+    fish2: [],
+    fish3: [],
+    fish4: [],
+  };
+
+  let whoIsTheWinner = "";
+
+  while (!whoIsTheWinner) {
+    fishes.forEach((fishElement) => {
+      let movement = Math.random() > 0.5 ? 1 : 0;
+
+      if (Math.random() > changeToMoveForward) {
+        movement *= -1;
+      }
+
+      const fishPath = path[fishElement.id];
+      let sum = fishPath[fishPath.length - 1]?.left ?? 0;
+      sum = sum + movement;
+
+      path[fishElement.id].push({ left: sum });
+
+      if (sum === 85) {
+        whoIsTheWinner = fishElement.id;
+      }
+    });
+  }
+
+  let pathInPercentage = { fish1: [], fish2: [], fish3: [], fish4: [] };
+
+  fishes.forEach((fishElement) => {
+    pathInPercentage[fishElement.id] = path[fishElement.id].map((item) => ({
+      left: `${item.left}%`,
+    }));
+  });
+
+  return {
+    pathInPercentage,
+    whoIsTheWinner,
+  };
+};
+
+const core = () => {
   const fish1 = document.getElementById("fish1");
   const fish2 = document.getElementById("fish2");
   const fish3 = document.getElementById("fish3");
   const fish4 = document.getElementById("fish4");
 
+  const restartButton = document.getElementById("restart");
+
   const fishes = [fish1, fish2, fish3, fish4];
 
-  const time = 15;
-  const changeToMoveForward = 0.62;
+  let { pathInPercentage, whoIsTheWinner } = calculatePath(fishes);
 
-  let fishAnimationFrame;
+  const endGame = (el) => {
+    if (el.srcElement.effect.target.id === whoIsTheWinner) {
+      const winner = whoIsTheWinner;
+      const id = "crown-" + winner;
+      document.getElementById(id).style.display = "inline-block";
+      document.getElementById(id).animate([{ opacity: 1 }], {
+        delay: 250,
+        duration: 1000,
+        fill: "forwards",
+      });
 
-  let winner;
-
-  const positions = {
-    fish1: 0,
-    fish2: 0,
-    fish3: 0,
-    fish4: 0,
+      restartButton.style.visibility = "visible";
+      restartButton.animate([{ opacity: 1 }], {
+        delay: 2000,
+        duration: 2000,
+        fill: "forwards",
+        easing: "ease-out",
+      });
+    }
   };
 
   const createFishMovement = () => {
-    let startTime;
-
-    const move = (timestamp) => {
-      if (startTime === undefined) {
-        startTime = timestamp;
-      }
-
-      let elapsed = timestamp - startTime;
-
-      if (elapsed >= time) {
-        fishes.forEach((fishElement) => {
-          const movement = Math.random() > 0.5 ? 1 : 0;
-
-          if (Math.random() < changeToMoveForward) {
-            positions[fishElement.id] += movement;
-          } else {
-            positions[fishElement.id] -= movement;
-          }
-
-          fishElement.style.left = `${positions[fishElement.id]}%`;
-
-          if (fishElement.style.left === "85%") {
-            winner = fishElement.id;
-
-            const id = "crown-" + winner;
-            document.getElementById(id).style.display = "inline-block";
-
-            gsap.to(`#${id}`, {
-              ease: "power1.out",
-              opacity: 1,
-              duration: 2,
-            });
-
-            document.getElementById("restart").style.visibility = "visible";
-            gsap.to("#restart", {
-              delay: 3,
-              ease: "power4.out",
-              opacity: 1,
-              duration: 3,
-            });
-
-            cancelAnimationFrame(fishAnimationFrame);
-          }
-        });
-        startTime = timestamp;
-      }
-      if (!winner) {
-        fishAnimationFrame = requestAnimationFrame(move);
-      }
-    };
-
-    requestAnimationFrame(move);
+    fishes.forEach((fishElement) => {
+      const animation = fishElement.animate(pathInPercentage[fishElement.id], {
+        duration: 12500,
+        fill: "forwards",
+      });
+      animation.onfinish = endGame;
+    });
   };
 
   const startRace = () => {
@@ -184,41 +194,43 @@ const core = () => {
       });
   };
 
-  document.getElementById("restart").addEventListener("click", () => {
-    gsap.to("#restart", {
-      opacity: 0,
-      ease: "power2.in",
-      duration: 0.3,
-    });
-    fishIds.forEach((fishId) => {
-      gsap.to(`#${fishId}`, { left: "0%", duration: 3, ease: "none" });
+  restartButton.addEventListener("click", () => {
+    const crownElement = document.getElementById(`crown-${whoIsTheWinner}`);
+    const animation = restartButton.animate([{ opacity: 0 }], {
+      duration: 300,
+      easing: "ease-in",
+      fill: "forwards",
     });
 
-    gsap.to(`#crown-${winner}`, {
-      opacity: 0,
-      duration: 0.5,
-      ease: "power1.in",
-    });
-    setTimeout(() => {
-      document.getElementById("restart").style.visibility = "hidden";
-      document.getElementById("restart").style.opacity = 0;
+    animation.onfinish = () => {
+      restartButton.style.visibility = "hidden";
+      crownElement.style.opacity = 1;
+      crownElement.style.display = "none";
+    };
 
-      document.getElementById(`crown-${winner}`).style.opacity = 1;
-      document.getElementById(`crown-${winner}`).style.display = "none";
-    }, 300);
+    fishes.forEach((fishElement) => {
+      fishElement.animate([{ left: "0%" }], {
+        duration: 3000,
+        fill: "forwards",
+      });
+    });
+
+    crownElement.animate([{ opacity: 0 }], {
+      duration: 500,
+      easing: "ease-in",
+      fill: "forwards",
+    });
 
     setTimeout(() => {
       restart();
     }, 4000);
+
+    const newPath = calculatePath(fishes);
+    pathInPercentage = newPath.pathInPercentage;
+    whoIsTheWinner = newPath.whoIsTheWinner;
   });
 
   const restart = () => {
-    fishIds.forEach((fishId) => {
-      positions[fishId] = 0;
-    });
-
-    winner = "";
-
     startRace();
   };
 };
