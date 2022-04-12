@@ -40,6 +40,8 @@ const calculatePath = (fishes) => {
 };
 
 const core = () => {
+  const fishIds = ["fish1", "fish2", "fish3", "fish4"];
+
   const fish1 = document.getElementById("fish1");
   const fish2 = document.getElementById("fish2");
   const fish3 = document.getElementById("fish3");
@@ -85,10 +87,23 @@ const core = () => {
             winner = whoIsTheWinner;
 
             const id = "crown-" + winner;
+            document.getElementById(id).style.display = "inline-block";
+
+            gsap.to(`#${id}`, {
+              ease: "power1.out",
+              opacity: 1,
+              duration: 2,
+            });
+
+            document.getElementById("restart").style.visibility = "visible";
+            gsap.to("#restart", {
+              delay: 3,
+              ease: "power4.out",
+              opacity: 1,
+              duration: 3,
+            });
 
             cancelAnimationFrame(fishAnimationFrame);
-
-            document.getElementById(id).style.display = "inline-block";
           }
         });
         startTime = timestamp;
@@ -120,7 +135,7 @@ const core = () => {
     let fishIntroStep = 0;
 
     let countDownStep = 0;
-
+    let elapseTime = 2000;
     const countDown = (timestamp) => {
       if (startTime === undefined) {
         startTime = timestamp;
@@ -128,27 +143,30 @@ const core = () => {
 
       const elapsed = timestamp - startTime;
 
-      if (elapsed >= 1500 && fishIntroStep < 5) {
+      if (elapsed >= elapseTime && fishIntroStep < 5) {
         switch (fishIntroStep) {
           case 1:
-            fish1.style.opacity = 1;
+            introductionTimeline("#fish1", "3%", "slow(0.7, 0.7, false)");
+            elapseTime = 4200;
             break;
           case 2:
-            fish2.style.opacity = 1;
+            introductionTimeline("#fish2", "29%", "expo.out");
             break;
           case 3:
-            fish3.style.opacity = 1;
+            introductionTimeline("#fish3", "54%", "back.inOut(1)");
             break;
           case 4:
-            fish4.style.opacity = 1;
+            introductionTimeline("#fish4", "78%", "sine.out");
+            elapseTime = 4200 + 1000;
             break;
         }
         fishIntroStep = fishIntroStep + 1;
         startTime = undefined;
-      } else if (elapsed >= 1000 && fishIntroStep === 5) {
+      } else if (elapsed >= elapseTime && fishIntroStep === 5) {
         switch (countDownStep) {
           case 0:
             counterElement3.style.display = "block";
+            elapseTime = 1000;
             break;
           case 1:
             counterElement3.style.display = "none";
@@ -183,4 +201,64 @@ const core = () => {
   };
 
   start();
+
+  const introductionTimeline = (fishId, topValue, ease) => {
+    gsap
+      .timeline()
+      .to(fishId, {
+        opacity: 1,
+        duration: 1,
+        ease: "power1.out",
+      })
+      .to(fishId, {
+        top: topValue,
+        transform: "translate(-50%, 0%)",
+        ease: "power2.out",
+        duration: 1,
+      })
+      .to(fishId, {
+        left: "0%",
+        transform: "translate(0%, 0%)",
+        ease: ease,
+        duration: 2,
+      });
+  };
+
+  document.getElementById("restart").addEventListener("click", () => {
+    gsap.to("#restart", {
+      opacity: 0,
+      ease: "power2.in",
+      duration: 0.3,
+    });
+    fishIds.forEach((fishId) => {
+      gsap.to(`#${fishId}`, { left: "0%", duration: 3, ease: "none" });
+    });
+
+    gsap.to(`#crown-${winner}`, {
+      opacity: 0,
+      duration: 0.5,
+      ease: "power1.in",
+    });
+    setTimeout(() => {
+      document.getElementById("restart").style.visibility = "hidden";
+      document.getElementById("restart").style.opacity = 0;
+
+      document.getElementById(`crown-${winner}`).style.opacity = 1;
+      document.getElementById(`crown-${winner}`).style.display = "none";
+    }, 300);
+
+    setTimeout(() => {
+      restart();
+    }, 4000);
+  });
+
+  const restart = () => {
+    fishIds.forEach((fishId) => {
+      positions[fishId] = 0;
+    });
+
+    winner = "";
+
+    startRace();
+  };
 };

@@ -70,10 +70,12 @@
         /* How the transition left and the time to move work together is magic to me right now
         * TODO: figure out how those 2 properties relate
         */
-        transition: all 0.6s, left 0.05s;
-        will-change: left;
-        left: 0;
+        transition: left 0.05s;
         width: 20%;
+
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
       }
     </style>
     <script
@@ -89,6 +91,10 @@
 
       gtag("config", "UA-175557590-1");
     </script>
+    <script
+      defer
+      src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"
+    ></script>
   </head>
   <body style="margin: 0">
     <main>
@@ -122,6 +128,23 @@
               <img id="image-fish4" src="./assets/fish4/frame_1.png" />
               <img id="crown-fish4" class="crown" src="./assets/crown.png" />
             </span>
+            <img
+              id="restart"
+              style="
+                position: absolute;
+                opacity: 0;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+                cursor: pointer;
+                visibility: hidden;
+                width: 26%;
+                z-index: 3;
+              "
+              src="./assets/restartbutton/restart.svg"
+              width="190"
+              height="190"
+            />
           </div>
           <div id="count-container">
             <img
@@ -178,8 +201,9 @@
       // This code monitors the page for changes in size. When change is detected, it sends send the latest size to the parent page using postMessage
 
       // determine height of content on this page
+      const contentContainer = document.getElementById("content-container");
+
       function getMyHeight() {
-        const contentContainer = document.getElementById("content-container");
         return contentContainer.scrollHeight;
       }
 
