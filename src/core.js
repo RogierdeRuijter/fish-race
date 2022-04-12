@@ -98,76 +98,46 @@ const core = () => {
   const counterGo = document.getElementById("count-go");
 
   const start = () => {
-    let countDownAnimationFrame;
-    let startTime;
+    setTimeout(() => {
+      introductionTimeline("#fish1", "3%", "slow(0.7, 0.7, false)");
+    }, 2000);
 
-    /* starts at 0 for the user to look at the water and finish line and grasp what it is */
-    let fishIntroStep = 0;
+    setTimeout(() => {
+      introductionTimeline("#fish2", "29%", "expo.out");
+    }, 2000 + 3200);
 
-    let countDownStep = 0;
-    let elapseTime = 2000;
-    const countDown = (timestamp) => {
-      if (startTime === undefined) {
-        startTime = timestamp;
-      }
+    setTimeout(() => {
+      introductionTimeline("#fish3", "54%", "back.inOut(1)");
+    }, 2000 + 3200 * 2);
 
-      const elapsed = timestamp - startTime;
+    setTimeout(() => {
+      introductionTimeline("#fish4", "78%", "sine.out");
+    }, 2000 + 3200 * 3);
 
-      if (elapsed >= elapseTime && fishIntroStep < 5) {
-        switch (fishIntroStep) {
-          case 1:
-            introductionTimeline("#fish1", "3%", "slow(0.7, 0.7, false)");
-            elapseTime = 4200;
-            break;
-          case 2:
-            introductionTimeline("#fish2", "29%", "expo.out");
-            break;
-          case 3:
-            introductionTimeline("#fish3", "54%", "back.inOut(1)");
-            break;
-          case 4:
-            introductionTimeline("#fish4", "78%", "sine.out");
-            elapseTime = 4200 + 1000;
-            break;
-        }
-        fishIntroStep = fishIntroStep + 1;
-        startTime = undefined;
-      } else if (elapsed >= elapseTime && fishIntroStep === 5) {
-        switch (countDownStep) {
-          case 0:
-            counterElement3.style.display = "block";
-            elapseTime = 1000;
-            break;
-          case 1:
-            counterElement3.style.display = "none";
-            counterElement2.style.display = "block";
-            break;
-          case 2:
-            counterElement2.style.display = "none";
-            counterElement1.style.display = "block";
-            break;
-          case 3:
-            counterElement1.style.display = "none";
-            counterGo.style.display = "block";
-            break;
-          case 4:
-            counterGo.style.display = "none";
-            document.getElementById("count-container").remove();
-            startRace();
-            break;
-        }
-        countDownStep = countDownStep + 1;
-        startTime = undefined;
-      }
+    setTimeout(() => {
+      counterElement3.style.display = "block";
+    }, 2000 + 3200 * 4 + 1000);
 
-      countDownAnimationFrame = requestAnimationFrame(countDown);
+    setTimeout(() => {
+      counterElement3.style.display = "none";
+      counterElement2.style.display = "block";
+    }, 2000 + 3200 * 4 + 1000 * 2);
 
-      if (fishIntroStep === 5 && countDownStep === 5) {
-        cancelAnimationFrame(countDownAnimationFrame);
-      }
-    };
+    setTimeout(() => {
+      counterElement2.style.display = "none";
+      counterElement1.style.display = "block";
+    }, 2000 + 3200 * 4 + 1000 * 3);
 
-    requestAnimationFrame(countDown);
+    setTimeout(() => {
+      counterElement1.style.display = "none";
+      counterGo.style.display = "block";
+    }, 2000 + 3200 * 4 + 1000 * 4);
+
+    setTimeout(() => {
+      counterGo.style.display = "none";
+      document.getElementById("count-container").remove();
+      startRace();
+    }, 2000 + 3200 * 4 + 1000 * 5);
   };
 
   start();
