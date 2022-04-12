@@ -11,14 +11,12 @@ const calculatePath = (fishes) => {
   let whoIsTheWinner = "";
 
   while (!whoIsTheWinner) {
-    // for (let i = 0; i < 4; i++) {
     fishes.forEach((fishElement) => {
       let movement = Math.random() > 0.5 ? 1 : 0;
 
       if (Math.random() > changeToMoveForward) {
         movement *= -1;
       }
-      // path[fishElement.id].push({ left: movement });
 
       const fishPath = path[fishElement.id];
       let sum = fishPath[fishPath.length - 1]?.left ?? 0;
