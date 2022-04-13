@@ -99,19 +99,19 @@ const core = () => {
 
   const start = () => {
     setTimeout(() => {
-      introductionTimeline(fish1, "3%", "slow(0.7, 0.7, false)");
+      introductionTimeline(fish1, "3%", "ease");
     }, 2000);
 
     setTimeout(() => {
-      introductionTimeline(fish2, "29%", "expo.out");
+      introductionTimeline(fish2, "29%", "ease-out");
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline(fish3, "54%", "back.inOut(1)");
+      introductionTimeline(fish3, "54%", "ease-in-out");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline(fish4, "78%", "sine.out");
+      introductionTimeline(fish4, "78%", "linear");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
@@ -157,6 +157,7 @@ const core = () => {
     fishId.animate([{ left: "0%", transform: "translate(0%, 0%)" }], {
       duration: 2000,
       delay: 2000,
+      easing: ease,
       fill: "forwards",
     });
   };
