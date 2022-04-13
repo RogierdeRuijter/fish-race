@@ -99,19 +99,19 @@ const core = () => {
 
   const start = () => {
     setTimeout(() => {
-      introductionTimeline("#fish1", "3%", "slow(0.7, 0.7, false)");
+      introductionTimeline(fish1, "3%", "ease");
     }, 2000);
 
     setTimeout(() => {
-      introductionTimeline("#fish2", "29%", "expo.out");
+      introductionTimeline(fish2, "29%", "ease-out");
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline("#fish3", "54%", "back.inOut(1)");
+      introductionTimeline(fish3, "54%", "linear");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline("#fish4", "78%", "sine.out");
+      introductionTimeline(fish4, "78%", "ease-in-out");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
@@ -143,25 +143,23 @@ const core = () => {
   start();
 
   const introductionTimeline = (fishId, topValue, ease) => {
-    gsap
-      .timeline()
-      .to(fishId, {
-        opacity: 1,
-        duration: 1,
-        ease: "power1.out",
-      })
-      .to(fishId, {
-        top: topValue,
-        transform: "translate(-50%, 0%)",
-        ease: "power2.out",
-        duration: 1,
-      })
-      .to(fishId, {
-        left: "0%",
-        transform: "translate(0%, 0%)",
-        ease: ease,
-        duration: 2,
-      });
+    fishId.animate([{ opacity: 1 }], {
+      duration: 1000,
+      fill: "forwards",
+    });
+
+    fishId.animate([{ top: topValue, transform: "translate(-50%, 0%)" }], {
+      duration: 1000,
+      delay: 1000,
+      fill: "forwards",
+    });
+
+    fishId.animate([{ left: "0%", transform: "translate(0%, 0%)" }], {
+      duration: 2000,
+      delay: 2000,
+      easing: ease,
+      fill: "forwards",
+    });
   };
 
   restartButton.addEventListener("click", () => {
