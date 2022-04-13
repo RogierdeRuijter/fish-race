@@ -114,19 +114,19 @@ const core = () => {
 
   const start = () => {
     setTimeout(() => {
-      introductionTimeline(fish1, "28%", "ease");
+      introductionTimeline(fish1, getTopValue("fish1"), "ease");
     }, 2000);
 
     setTimeout(() => {
-      introductionTimeline(fish2, "215%", "ease-out");
+      introductionTimeline(fish2, getTopValue("fish2"), "ease-out");
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline(fish3, "320%", "linear");
+      introductionTimeline(fish3, getTopValue("fish3"), "linear");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline(fish4, "460%", "ease-in-out");
+      introductionTimeline(fish4, getTopValue("fish4"), "ease-in-out");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
