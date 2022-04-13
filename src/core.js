@@ -114,19 +114,19 @@ const core = () => {
 
   const start = () => {
     setTimeout(() => {
-      introductionTimeline(fish1, getTopValue("fish1"), "ease");
+      introductionTimeline(fish1, "ease");
     }, 2000);
 
     setTimeout(() => {
-      introductionTimeline(fish2, getTopValue("fish2"), "ease-out");
+      introductionTimeline(fish2, "ease-out");
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline(fish3, getTopValue("fish3"), "linear");
+      introductionTimeline(fish3, "linear");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline(fish4, getTopValue("fish4"), "ease-in-out");
+      introductionTimeline(fish4, "ease-in-out");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
@@ -157,18 +157,21 @@ const core = () => {
 
   start();
 
-  const introductionTimeline = (fishId, topValue, ease) => {
-    fishId.animate([{ opacity: 1 }], {
+  const introductionTimeline = (fish, ease) => {
+    fish.animate([{ opacity: 1 }], {
       duration: 1000,
       fill: "forwards",
     });
 
-    fishId.animate([{ transform: `translateX(0) translateY(${topValue})` }], {
-      duration: 2000,
-      delay: 1500,
-      easing: ease,
-      fill: "forwards",
-    });
+    fish.animate(
+      [{ transform: `translateX(0) translateY(${getTopValue(fish.id)})` }],
+      {
+        duration: 2000,
+        delay: 1500,
+        easing: ease,
+        fill: "forwards",
+      }
+    );
   };
 
   restartButton.addEventListener("click", () => {
