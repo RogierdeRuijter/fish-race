@@ -70,13 +70,13 @@
         /* How the transition left and the time to move work together is magic to me right now
         * TODO: figure out how those 2 properties relate
         */
-        transition: left 0.05s;
+        transition: transform 0.05s;
         width: 20%;
 
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        will-change: left, top;
+        will-change: left, top, transform;
       }
     </style>
     <script

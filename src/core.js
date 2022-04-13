@@ -12,7 +12,7 @@ const calculatePath = (fishes) => {
 
   while (!whoIsTheWinner) {
     fishes.forEach((fishElement) => {
-      let movement = Math.random() > 0.5 ? 1 : 0;
+      let movement = Math.random() > 0.5 ? 6 : 0;
 
       if (Math.random() > changeToMoveForward) {
         movement *= -1;
@@ -24,7 +24,7 @@ const calculatePath = (fishes) => {
 
       path[fishElement.id].push({ left: sum });
 
-      if (sum === 85) {
+      if (sum === 420) {
         whoIsTheWinner = fishElement.id;
       }
     });
@@ -34,7 +34,7 @@ const calculatePath = (fishes) => {
 
   fishes.forEach((fishElement) => {
     pathInPercentage[fishElement.id] = path[fishElement.id].map((item) => ({
-      left: `${item.left}%`,
+      transform: `translateX(${item.left}%)`,
     }));
   });
 
@@ -78,9 +78,11 @@ const core = () => {
   };
 
   const createFishMovement = () => {
+    const duration = Math.floor(Math.random() * (14500 - 9000 + 1) + 9000);
+
     fishes.forEach((fishElement) => {
       const animation = fishElement.animate(pathInPercentage[fishElement.id], {
-        duration: 12500,
+        duration,
         fill: "forwards",
       });
       animation.onfinish = endGame;
@@ -147,7 +149,6 @@ const core = () => {
       duration: 1000,
       fill: "forwards",
     });
-
     fishId.animate([{ top: topValue, transform: "translate(-50%, 0%)" }], {
       duration: 1000,
       delay: 1000,
