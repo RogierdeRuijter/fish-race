@@ -165,7 +165,7 @@ const core = () => {
 
     fishId.animate([{ transform: `translateX(0) translateY(${topValue})` }], {
       duration: 2000,
-      delay: 1250,
+      delay: 1500,
       easing: ease,
       fill: "forwards",
     });
@@ -186,7 +186,8 @@ const core = () => {
     };
 
     fishes.forEach((fishElement) => {
-      fishElement.animate([{ transform: "translateX(0)" }], {
+      const top = getTopValue(fishElement.id);
+      fishElement.animate([{ transform: `translateX(0) translateY(${top})` }], {
         duration: 3000,
         fill: "forwards",
       });
