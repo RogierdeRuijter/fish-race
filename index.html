@@ -54,9 +54,6 @@
         width: 12%;
         aspect-ratio: 103/66;
       }
-      .fish {
-        opacity: 0;
-      }
       #start-button {
         display: none;
       }
@@ -73,10 +70,12 @@
         transition: transform 0.05s;
         width: 20%;
 
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
+        /* transform: translate(200%, 245%); */
         will-change: left, top, transform;
+
+        opacity: 0;
       }
     </style>
     <script
