@@ -186,7 +186,7 @@ const core = () => {
     };
 
     fishes.forEach((fishElement) => {
-      fishElement.animate([{ left: "0%" }], {
+      fishElement.animate([{ transform: "translateX(0)" }], {
         duration: 3000,
         fill: "forwards",
       });
