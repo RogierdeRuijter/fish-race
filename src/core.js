@@ -1,3 +1,15 @@
+const getTopValue = (fishId) => {
+  if (fishId === "fish1") {
+    return "28%";
+  } else if (fishId === "fish2") {
+    return "215%";
+  } else if (fishId === "fish3") {
+    return "320%";
+  } else if (fishId === "fish4") {
+    return "460%";
+  }
+};
+
 const calculatePath = (fishes) => {
   const changeToMoveForward = 0.62;
 
@@ -33,8 +45,9 @@ const calculatePath = (fishes) => {
   let pathInPercentage = { fish1: [], fish2: [], fish3: [], fish4: [] };
 
   fishes.forEach((fishElement) => {
+    const top = getTopValue(fishElement.id);
     pathInPercentage[fishElement.id] = path[fishElement.id].map((item) => ({
-      transform: `translateX(${item.left}%)`,
+      transform: `translateX(${item.left}%) translateY(${top})`,
     }));
   });
 
@@ -101,19 +114,19 @@ const core = () => {
 
   const start = () => {
     setTimeout(() => {
-      introductionTimeline(fish1, "3%", "ease");
+      introductionTimeline(fish1, "ease");
     }, 2000);
 
     setTimeout(() => {
-      introductionTimeline(fish2, "29%", "ease-out");
+      introductionTimeline(fish2, "ease-out");
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline(fish3, "54%", "linear");
+      introductionTimeline(fish3, "linear");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline(fish4, "78%", "ease-in-out");
+      introductionTimeline(fish4, "ease-in-out");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
@@ -144,23 +157,21 @@ const core = () => {
 
   start();
 
-  const introductionTimeline = (fishId, topValue, ease) => {
-    fishId.animate([{ opacity: 1 }], {
+  const introductionTimeline = (fish, ease) => {
+    fish.animate([{ opacity: 1 }], {
       duration: 1000,
-      fill: "forwards",
-    });
-    fishId.animate([{ top: topValue, transform: "translate(-50%, 0%)" }], {
-      duration: 1000,
-      delay: 1000,
       fill: "forwards",
     });
 
-    fishId.animate([{ left: "0%", transform: "translate(0%, 0%)" }], {
-      duration: 2000,
-      delay: 2000,
-      easing: ease,
-      fill: "forwards",
-    });
+    fish.animate(
+      [{ transform: `translateX(0) translateY(${getTopValue(fish.id)})` }],
+      {
+        duration: 2000,
+        delay: 1500,
+        easing: ease,
+        fill: "forwards",
+      }
+    );
   };
 
   restartButton.addEventListener("click", () => {
@@ -178,7 +189,8 @@ const core = () => {
     };
 
     fishes.forEach((fishElement) => {
-      fishElement.animate([{ transform: "translateX(0)" }], {
+      const top = getTopValue(fishElement.id);
+      fishElement.animate([{ transform: `translateX(0) translateY(${top})` }], {
         duration: 3000,
         fill: "forwards",
       });

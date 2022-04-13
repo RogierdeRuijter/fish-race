@@ -42,6 +42,22 @@
   transform: rotate(30deg);
 }
 
+#fish1 {
+  transform: translateX(200%) translateY(28%);
+}
+
+#fish2 {
+  transform: translateX(200%) translateY(215%);
+}
+
+#fish3 {
+  transform: translateX(200%) translateY(320%);
+}
+
+#fish4 {
+  transform: translateX(200%) translateY(460%);
+}
+
 #start-button {
   position: absolute;
   top: 45.6%;
