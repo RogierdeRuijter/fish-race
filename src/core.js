@@ -107,11 +107,11 @@ const core = () => {
     }, 2000 + 3200);
 
     setTimeout(() => {
-      introductionTimeline(fish3, "54%", "ease-in-out");
+      introductionTimeline(fish3, "54%", "linear");
     }, 2000 + 3200 * 2);
 
     setTimeout(() => {
-      introductionTimeline(fish4, "78%", "linear");
+      introductionTimeline(fish4, "78%", "ease-in-out");
     }, 2000 + 3200 * 3);
 
     setTimeout(() => {
