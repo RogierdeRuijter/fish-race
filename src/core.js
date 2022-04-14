@@ -155,7 +155,7 @@ const core = () => {
     }, 2000 + 3200 * 4 + 1000 * 5);
   };
 
-  start();
+  requestAnimationFrame(start);
 
   const introductionTimeline = (fish, ease) => {
     fish.animate([{ opacity: 1 }], {
