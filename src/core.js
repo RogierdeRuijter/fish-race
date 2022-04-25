@@ -94,11 +94,21 @@ const core = () => {
     const duration = Math.floor(Math.random() * (14500 - 9000 + 1) + 9000);
 
     fishes.forEach((fishElement) => {
-      const animation = fishElement.animate(pathInPercentage[fishElement.id], {
-        duration,
-        fill: "forwards",
-      });
-      animation.onfinish = endGame;
+      const animateFish = () => {
+        const animation = fishElement.animate(
+          pathInPercentage[fishElement.id],
+          {
+            duration,
+            fill: "forwards",
+          }
+        );
+        animation.onfinish = endGame;
+      };
+      if ("requestIdleCallback" in window) {
+        requestIdleCallback(animateFish);
+      } else {
+        requestAnimationFrame(animateFish);
+      }
     });
   };
 
@@ -113,6 +123,7 @@ const core = () => {
   const counterGo = document.getElementById("count-go");
 
   const start = () => {
+    // TODO: use the onfinish method to detmine thwne it is done
     setTimeout(() => {
       introductionTimeline(fish1, "ease");
     }, 2000);
